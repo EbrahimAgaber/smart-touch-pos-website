@@ -28,7 +28,6 @@
       --green:          #0DAF7A;
       --green-dark:     #0A9469;
       --green-bg:       rgba(13, 175, 122, 0.08);
-      --green-glow:     rgba(13, 175, 122, 0.20);
       
       --amber:          #F59E0B;
       --amber-bg:       rgba(245, 158, 11, 0.08);
@@ -41,13 +40,11 @@
 
       /* Canvas & Surfaces */
       --bg:             #F4F6FB;
-      --bg-alt:         #EAF0FB;
       --surface:        #FFFFFF;
       --surface-hover:  #F8FAFC;
       
       /* Borders & Shadows */
       --border:         #DDE3EF;
-      --border-focus:   #3D52D5;
       --border-dashed:  #CBD5E1;
       
       --shadow-xs:      0 1px 3px rgba(15, 23, 42, 0.05);
@@ -91,7 +88,7 @@
       background-attachment: fixed;
     }
 
-    /* ══ Ambient Header Background ══ */
+    /* Header Background Glow */
     .header-glow {
       position: absolute;
       top: 0;
@@ -105,7 +102,7 @@
       z-index: 0;
     }
 
-    /* ══ Navigation Bar ══ */
+    /* ══ Top Navbar ══ */
     .navbar {
       position: sticky;
       top: 0;
@@ -229,27 +226,10 @@
       transform: translateY(-1px);
     }
 
-    .btn-success {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
-      color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(13, 175, 122, 0.25);
-    }
-    .btn-success:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(13, 175, 122, 0.35);
-    }
-
     .btn-sm {
       padding: 6px 12px;
       font-size: 0.78rem;
       border-radius: var(--radius-sm);
-    }
-
-    .btn-icon {
-      width: 38px;
-      height: 38px;
-      padding: 0;
-      border-radius: var(--radius-md);
     }
 
     /* Cashier Fast Mode Toggle */
@@ -277,7 +257,7 @@
       height: 16px;
     }
 
-    /* ══ Main Layout Container ══ */
+    /* ══ Layout Container ══ */
     .main-container {
       position: relative;
       z-index: 1;
@@ -341,10 +321,6 @@
       font-size: 1.1rem;
       padding: 4px;
       border-radius: 6px;
-    }
-    .wf-dismiss:hover {
-      color: var(--t1);
-      background: var(--bg);
     }
 
     /* ══ Metrics Row ══ */
@@ -419,7 +395,6 @@
       margin-bottom: 32px;
       box-shadow: var(--shadow-sm);
       position: relative;
-      overflow: hidden;
     }
 
     .dropzone-box {
@@ -430,7 +405,6 @@
       background: #FAFCFF;
       cursor: pointer;
       transition: all 0.25s ease;
-      position: relative;
     }
     .dropzone-box:hover, .dropzone-box.dragover {
       border-color: var(--brand);
@@ -709,6 +683,20 @@
       border-radius: var(--radius-full);
       display: inline-block;
       margin-top: 3px;
+    }
+
+    .cloud-badge-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0284C7;
+      background: rgba(14, 165, 233, 0.1);
+      border: 1px solid rgba(14, 165, 233, 0.25);
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 4px;
     }
 
     .card-actions-mini {
@@ -1169,9 +1157,9 @@
 
       <div class="nav-actions">
         <!-- Cashier Quick Mode Toggle -->
-        <label class="fast-mode-toggle" title="تفعيل وضع الكاشير السريع لسهولة التحميل من أجهزة العملاء بدون واجهات التعديل">
+        <label class="fast-mode-toggle" title="تفعيل وضع الكاشير السريع لسهولة التحميل المباشر من أجهزة العملاء">
           <input type="checkbox" id="cashier-mode-chk" onchange="toggleCashierMode(this.checked)">
-          <span>⚡ وضع جهاز الكاشير (تحميل مباشر)</span>
+          <span>⚡ وضع جهاز الكاشير (تحميل فوري)</span>
         </label>
 
         <!-- Template Download -->
@@ -1180,18 +1168,17 @@
           قالب الأصناف الفارغ
         </button>
 
-        <!-- Backup Library -->
-        <button class="btn btn-outline btn-sm" onclick="exportLibraryBackup()" title="تصدير نسخة احتياطية لكافة المتاجر والأصناف في ملف واحد">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"/></svg>
-          تصدير نسخة احتياطية
+        <!-- Cloud Refresh -->
+        <button class="btn btn-outline btn-sm" onclick="syncWithCloud(true)" title="تحديث وتنزيل أحدث الملفات من السحابة">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          تحديث السحابة
         </button>
 
-        <!-- Restore Library -->
-        <button class="btn btn-outline btn-sm" onclick="document.getElementById('restore-input').click()" title="استرجاع مكتبة العملاء من ملف نسخة سابقة">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9M8 17l4 4 4-4"/></svg>
-          استيراد نسخة
+        <!-- Backup Library -->
+        <button class="btn btn-outline btn-sm" onclick="exportLibraryBackup()" title="تصدير نسخة احتياطية لكافة المتاجر">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"/></svg>
+          تصدير
         </button>
-        <input type="file" id="restore-input" style="display:none" accept=".json" onchange="importLibraryBackup(event)">
 
         <a href="index.html" class="btn btn-outline btn-sm">
           الموقع الرئيسي
@@ -1204,15 +1191,14 @@
   <!-- ═════════════════ MAIN CONTENT ═════════════════ -->
   <main class="main-container">
 
-    <!-- ══ Workflow Problem Solver Banner ══ -->
+    <!-- ══ Workflow Explainer Banner ══ -->
     <section class="workflow-banner" id="workflow-banner">
       <div class="wf-content">
         <div class="wf-icon-wrap">🛡️</div>
         <div class="wf-text">
-          <h3>بدون تسجيل دخول من جهاز العميل — أمان وسرعة فائقة</h3>
+          <h3>الوصول المباشر من جهاز كاشير العميل — بدون تسجيل دخول</h3>
           <p>
-            تجنب فتح بريدك الشخصي، واتساب ويب، أو حساباتك السحابية على أجهزة كاشير العملاء. 
-            ارفع ملف الـ CSV المنظف هنا مرة واحدة مع بيانات المتجر، وعند تواجدك عند العميل افتح هذه الصفحة وحمّل الملف المنظف بنقرة واحدة بتوافق كامل مع شاشات البصمة الذكية وهيئة الزكاة (ZATCA).
+            الملفات المنظفة محفوظة سحابياً في هذا الرابط. عند تواجدك عند العميل، افتح هذه الصفحة وحمّل ملف الأصناف المعتمد بضغطة زر واحدة بترميز UTF-8 مع BOM متوافق 100% مع نظام البصمة الذكية وإكسل.
           </p>
         </div>
       </div>
@@ -1226,7 +1212,7 @@
         <div class="metric-meta">
           <span class="metric-label">إجمالي المتاجر والعملاء</span>
           <span class="metric-value" id="metric-clients-count">0</span>
-          <span class="metric-foot">جاهزة للتنزيل</span>
+          <span class="metric-foot">متاحة بجميع الأجهزة</span>
         </div>
       </div>
 
@@ -1240,11 +1226,11 @@
       </div>
 
       <div class="metric-card">
-        <div class="metric-icon purple">✨</div>
+        <div class="metric-icon purple">☁️</div>
         <div class="metric-meta">
-          <span class="metric-label">ملفات مدققة للكاشير</span>
-          <span class="metric-value" id="metric-valid-count">0</span>
-          <span class="metric-foot">100% متوافقة مع POS</span>
+          <span class="metric-label">المزامنة السحابية</span>
+          <span class="metric-value" id="metric-cloud-status">متصلة</span>
+          <span class="metric-foot">GitHub Cloud Pages</span>
         </div>
       </div>
 
@@ -1272,16 +1258,15 @@
         <div class="drop-badges">
           <span class="pill-tag">⚡ تصحيح الترميز العربي UTF-8 مع BOM</span>
           <span class="pill-tag">🎯 التعرف الذكي على الباركود والسعر</span>
-          <span class="pill-tag">📑 دعم فواصل (فاصلة ، أو فاصلة منقوطة ؛ أو Tab)</span>
-          <span class="pill-tag">🔒 حفظ محلي دائم بالمتصفح</span>
+          <span class="pill-tag">☁️ متاح للتحميل من جهاز الكاشير في أي وقت</span>
         </div>
       </div>
 
-      <!-- Quick Metadata for Next Upload -->
+      <!-- Metadata Inputs for Next Upload -->
       <div class="upload-meta-grid">
         <div class="form-group">
           <label class="form-label">اسم العميل / المتجر</label>
-          <input type="text" id="store-name-input" class="form-control" placeholder="مثال: تموينات النخيل الحديثة">
+          <input type="text" id="store-name-input" class="form-control" placeholder="مثال: واحة القصيم للتمور">
         </div>
 
         <div class="form-group">
@@ -1298,12 +1283,12 @@
 
         <div class="form-group">
           <label class="form-label">الفرع / المدينة</label>
-          <input type="text" id="store-branch-input" class="form-control" placeholder="مثال: الفرع الرئيسي - الرياض">
+          <input type="text" id="store-branch-input" class="form-control" placeholder="مثال: القصيم - بريدة">
         </div>
 
         <div class="form-group">
           <label class="form-label">ملاحظة التدقيق</label>
-          <input type="text" id="store-note-input" class="form-control" placeholder="مثال: أسعار محدثة شاملة ضريبة 15%">
+          <input type="text" id="store-note-input" class="form-control" placeholder="مثال: قائمة الأصناف بعد مطابقة الأسعار والباركودات">
         </div>
 
         <button class="btn btn-brand" onclick="triggerManualUpload()" style="height:42px;">
@@ -1353,7 +1338,7 @@
             <th>عدد الأصناف</th>
             <th>حجم الملف</th>
             <th>تاريخ الرفع</th>
-            <th>التوافق</th>
+            <th>المصدر</th>
             <th>الإجراءات</th>
           </tr>
         </thead>
@@ -1369,14 +1354,14 @@
       <div class="modal-header">
         <div class="modal-title-wrap">
           <h3 id="modal-client-name">معاينة ملف الأصناف</h3>
-          <p id="modal-file-info">Al-Amal_Cleaned.csv · 1,450 rows</p>
+          <p id="modal-file-info">items - What_alqasim.csv · 685 rows</p>
         </div>
         <button class="btn btn-outline btn-sm" onclick="closePreviewModal()">✕ إغلاق</button>
       </div>
 
       <div class="modal-body">
         <div class="modal-toolbar">
-          <input type="text" id="modal-search-input" class="form-control" style="max-width:320px;" placeholder="بحث داخل أصناف هذا الملف..." oninput="filterModalItems()">
+          <input type="text" id="modal-search-input" class="form-control" style="max-width:320px;" placeholder="بحث داخل أصناف هذا المتجر..." oninput="filterModalItems()">
           <div style="font-size:0.82rem; color:var(--t2); font-weight:600;" id="modal-stats-bar">
             عرض 0 من 0 صنف
           </div>
@@ -1396,7 +1381,7 @@
           <span style="font-size:0.75rem; color:var(--t3);" id="modal-summary-tag"></span>
         </div>
         <div style="display:flex; gap:8px;">
-          <button class="btn btn-outline btn-sm" onclick="copyActiveCsvData()">📋 نسخ بصيغة CSV</button>
+          <button class="btn btn-outline btn-sm" onclick="copyActiveCsvData()">📋 نسخ CSV للحافظة</button>
           <button class="btn btn-brand btn-sm" id="modal-download-btn">📥 تحميل الملف المنظف للكاشير</button>
         </div>
       </div>
@@ -1438,7 +1423,7 @@
   <!-- ═════════════════ JAVASCRIPT ENGINE ═════════════════ -->
   <script>
     /* ═══════════════════════════════════════════════════════════
-       INDEXED-DB & STATE ENGINE
+       INDEXED-DB & MULTI-DEVICE CLOUD SYNC ENGINE
        ═══════════════════════════════════════════════════════════ */
     const DB_NAME = 'SmartPOS_CSV_Library_v2';
     const DB_VERSION = 1;
@@ -1449,9 +1434,7 @@
     let currentFilter = 'all';
     let currentViewMode = 'grid';
     let activePreviewFile = null;
-    let activePreviewFilteredItems = [];
 
-    // Open IndexedDB
     function initDatabase() {
       return new Promise((resolve, reject) => {
         const req = indexedDB.open(DB_NAME, DB_VERSION);
@@ -1470,6 +1453,7 @@
     }
 
     async function loadAllFromDb() {
+      if (!dbInstance) return [];
       return new Promise((resolve, reject) => {
         const tx = dbInstance.transaction(STORE_NAME, 'readonly');
         const store = tx.objectStore(STORE_NAME);
@@ -1480,6 +1464,7 @@
     }
 
     async function saveFileToDb(item) {
+      if (!dbInstance) return;
       return new Promise((resolve, reject) => {
         const tx = dbInstance.transaction(STORE_NAME, 'readwrite');
         const store = tx.objectStore(STORE_NAME);
@@ -1490,6 +1475,7 @@
     }
 
     async function deleteFileFromDb(id) {
+      if (!dbInstance) return;
       return new Promise((resolve, reject) => {
         const tx = dbInstance.transaction(STORE_NAME, 'readwrite');
         const store = tx.objectStore(STORE_NAME);
@@ -1500,98 +1486,75 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       INITIALIZATION & SEEDING REALISTIC SAMPLES
+       INITIALIZATION: MERGE CLOUD & LOCAL REPOSITORIES
        ═══════════════════════════════════════════════════════════ */
     window.addEventListener('DOMContentLoaded', async () => {
       try {
         await initDatabase();
-        libraryData = await loadAllFromDb();
-
-        // If newly opened with empty database, seed 3 sample stores
-        if (!libraryData || libraryData.length === 0) {
-          seedDefaultSamples();
-        } else {
-          renderLibrary();
-          updateMetrics();
-        }
       } catch (err) {
-        console.error('IndexedDB Error, falling back to LocalStorage:', err);
-        const stored = localStorage.getItem('smartpos_csv_library');
-        libraryData = stored ? JSON.parse(stored) : [];
-        if (libraryData.length === 0) seedDefaultSamples();
-        else {
-          renderLibrary();
-          updateMetrics();
-        }
+        console.warn('IndexedDB unavailable, falling back to memory/local storage:', err);
       }
 
+      await syncWithCloud(false);
       setupDragAndDrop();
     });
 
-    async function seedDefaultSamples() {
-      const sample1Csv = [
-        'كود الصنف,اسم الصنف,الباركود,سعر البيع,سعر التكلفة,الضريبة,الكمية,الوحدة,القسم',
-        '001,حليب المراعي طازج 2 لتر,628100701001,11.50,9.20,15,48,حبة,ألبان وأجبان',
-        '002,جبنة كيري 24 قطعة,628100701002,18.00,14.50,15,30,علبة,ألبان وأجبان',
-        '003,أرز الشعلان سيلا 10 كجم,628100701003,84.00,72.00,15,15,كيس,أرز وحبوب',
-        '004,زيت عافية ذرة 1.5 لتر,628100701004,22.50,18.00,15,25,حبة,زيوت وسمن',
-        '005,سكر الأسرة ناعم 5 كجم,628100701005,19.00,15.50,15,40,كيس,مواد تموينية',
-        '006,مياه هنا كرتون 40×330مل,628100701006,16.00,12.50,15,50,كرتون,مشروبات ومياه',
-        '007,شاي ربيع إكسبرس 100 خيط,628100701007,14.00,11.20,15,35,علبة,مشروبات ساخنة',
-        '008,مسحوق غسيل تايد 5 كجم,628100701008,49.00,39.00,15,20,كيس,منظفات وعناية'
-      ].join('\r\n');
+    async function syncWithCloud(isUserAction) {
+      if (isUserAction) showToast('جاري التحقق من السحابة وتحديث ملفات المتاجر...');
 
-      const sample2Csv = [
-        'كود الصنف,اسم الصنف,الباركود,سعر البيع,سعر التكلفة,الضريبة,الكمية,الوحدة,القسم',
-        'CF-01,إسبريسو سينجل أوريجن,6290001,14.00,3.50,15,999,كوب,قهوة ساخنة',
-        'CF-02,فلات وايت أسترالي,6290002,18.00,4.20,15,999,كوب,قهوة ساخنة',
-        'CF-03,آيس سبانش لاتيه,6290003,22.00,5.50,15,999,كوب,مشروبات باردة',
-        'CF-04,كولد برو إثيوبي فاخر,6290004,24.00,6.00,15,999,زجاجة,مشروبات باردة',
-        'BK-01,كرواسون جبنة وزعتر طازج,6290005,12.00,4.00,15,25,قطعة,مخبوزات وحلويات',
-        'BK-02,كيكة سان سباستيان بالتوت,6290006,26.00,9.00,15,18,قطعة,مخبوزات وحلويات'
-      ].join('\r\n');
-
-      const defaultList = [
-        {
-          id: 'demo-1',
-          clientName: 'تموينات ركن البركة المركزية',
-          category: 'تموينات وتجزئة',
-          branch: 'الرياض - حي الروضة',
-          note: 'قائمة الأصناف المنظفة بعد تحديث الباركودات وضريبة 15%',
-          fileName: 'AlBarakah_Grocery_Cleaned_2026.csv',
-          fileSizeText: '28.4 KB',
-          dateUploaded: '2026-09-06',
-          csvRaw: sample1Csv,
-          itemsCount: 8,
-          categoriesCount: 6,
-          isPosReady: true
-        },
-        {
-          id: 'demo-2',
-          clientName: 'مقهى ومحمص البن المختص',
-          category: 'مطاعم وكافيهات',
-          branch: 'جدة - طريق الملك',
-          note: 'منيو المشروبات والحلويات المعتمد مع نسب التكلفة',
-          fileName: 'SpecialtyCoffee_Menu_Cleaned.csv',
-          fileSizeText: '14.2 KB',
-          dateUploaded: '2026-09-07',
-          csvRaw: sample2Csv,
-          itemsCount: 6,
-          categoriesCount: 3,
-          isPosReady: true
+      let cloudItems = [];
+      try {
+        // Fetch published cloud library from repository
+        const res = await fetch('data/library.json?t=' + Date.now());
+        if (res.ok) {
+          cloudItems = await res.json();
         }
-      ];
-
-      for (const item of defaultList) {
-        await saveFileToDb(item);
+      } catch (err) {
+        console.warn('Could not fetch cloud library.json:', err);
       }
-      libraryData = defaultList;
+
+      // Load local database items
+      let localItems = [];
+      try {
+        localItems = await loadAllFromDb();
+      } catch (e) {
+        const stored = localStorage.getItem('smartpos_csv_library');
+        if (stored) localItems = JSON.parse(stored);
+      }
+
+      // Merge Cloud and Local items (Cloud items always take precedence or are updated)
+      const mergedMap = new Map();
+
+      // 1. Add cloud items
+      cloudItems.forEach(item => {
+        item.isCloudSynced = true;
+        mergedMap.set(item.id, item);
+      });
+
+      // 2. Add local items if not already in cloud map
+      localItems.forEach(item => {
+        if (!mergedMap.has(item.id)) {
+          mergedMap.set(item.id, item);
+        }
+      });
+
+      libraryData = Array.from(mergedMap.values());
+
+      // Save merged cloud items into local DB so they work offline as well
+      for (const item of cloudItems) {
+        try { await saveFileToDb(item); } catch (e) {}
+      }
+
       renderLibrary();
       updateMetrics();
+
+      if (isUserAction) {
+        showToast(`تمت مزامنة ${cloudItems.length} متجر من السحابة بنجاح!`);
+      }
     }
 
     /* ═══════════════════════════════════════════════════════════
-       SMART CSV PARSER & CLEANER (ARABIC & BOM SAFE)
+       SMART CSV PARSER & CLEANER
        ═══════════════════════════════════════════════════════════ */
     function parseCsvString(rawText) {
       if (!rawText) return { headers: [], rows: [] };
@@ -1616,7 +1579,6 @@
         }
       });
 
-      // Split row respecting quotes
       function splitLine(line, delim) {
         const result = [];
         let current = '';
@@ -1649,7 +1611,8 @@
         if (values.length > 0 && values.some(v => v.length > 0)) {
           const rowObj = {};
           headers.forEach((h, idx) => {
-            rowObj[h] = values[idx] !== undefined ? values[idx] : '';
+            let val = values[idx] !== undefined ? values[idx] : '';
+            rowObj[h] = val;
           });
           rows.push(rowObj);
         }
@@ -1659,7 +1622,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       FILE UPLOAD & DRAG/DROP HANDLERS
+       FILE UPLOAD & DRAG/DROP
        ═══════════════════════════════════════════════════════════ */
     function setupDragAndDrop() {
       const dropzone = document.getElementById('dropzone');
@@ -1681,17 +1644,13 @@
 
       dropzone.addEventListener('drop', (e) => {
         const files = e.dataTransfer.files;
-        if (files && files.length > 0) {
-          processFiles(files);
-        }
+        if (files && files.length > 0) processFiles(files);
       });
     }
 
     function handleFileSelect(event) {
       const files = event.target.files;
-      if (files && files.length > 0) {
-        processFiles(files);
-      }
+      if (files && files.length > 0) processFiles(files);
       event.target.value = '';
     }
 
@@ -1716,7 +1675,6 @@
             continue;
           }
 
-          // Format clean customer name from filename if not explicitly provided
           let clientName = customStoreName;
           if (!clientName) {
             clientName = file.name
@@ -1724,14 +1682,11 @@
               .replace(/[-_]/g, ' ')
               .replace(/\b(cleaned|items|csv|final|pos|v2|data)\b/gi, '')
               .trim();
-            if (!clientName) clientName = 'عميل جديد';
+            if (!clientName) clientName = 'متجر جديد';
           }
 
-          // Count unique categories
           const catHeader = parsed.headers.find(h => /قسم|تصنيف|مجموعة|category|group/i.test(h));
           const uniqueCats = catHeader ? new Set(parsed.rows.map(r => r[catHeader]).filter(Boolean)).size : 1;
-
-          // Format size
           const sizeKb = (file.size / 1024).toFixed(1) + ' KB';
 
           const newRecord = {
@@ -1739,14 +1694,15 @@
             clientName: clientName,
             category: customCategory || 'عام',
             branch: customBranch || 'الفرع الرئيسي',
-            note: customNote || 'تم الرفع والتدقيق للنظام',
+            note: customNote || 'تم الرفع والتدقيق للكاشير',
             fileName: file.name,
             fileSizeText: sizeKb,
             dateUploaded: new Date().toISOString().slice(0, 10),
             csvRaw: text,
             itemsCount: parsed.rows.length,
             categoriesCount: uniqueCats || 1,
-            isPosReady: true
+            isPosReady: true,
+            isCloudSynced: false
           };
 
           await saveFileToDb(newRecord);
@@ -1759,14 +1715,13 @@
       }
 
       if (addedCount > 0) {
-        // Reset form inputs
         document.getElementById('store-name-input').value = '';
         document.getElementById('store-branch-input').value = '';
         document.getElementById('store-note-input').value = '';
 
         renderLibrary();
         updateMetrics();
-        showToast(`تمت إضافة ${addedCount} ملف إلى مكتبة أصناف العملاء بنجاح!`);
+        showToast(`تمت إضافة ${addedCount} ملف محلياً! لمشاركتها سحابياً مع الكاشير، يمكنك استخدام زر التحديث.`);
       }
     }
 
@@ -1790,14 +1745,13 @@
       let filtered = libraryData.filter(item => {
         const matchesCategory = currentFilter === 'all' || item.category === currentFilter;
         const matchesSearch = !query || 
-          item.clientName.toLowerCase().includes(query) ||
-          item.fileName.toLowerCase().includes(query) ||
-          item.branch.toLowerCase().includes(query) ||
+          (item.clientName && item.clientName.toLowerCase().includes(query)) ||
+          (item.fileName && item.fileName.toLowerCase().includes(query)) ||
+          (item.branch && item.branch.toLowerCase().includes(query)) ||
           (item.note && item.note.toLowerCase().includes(query));
         return matchesCategory && matchesSearch;
       });
 
-      // Render Grid Cards
       if (filtered.length === 0) {
         grid.innerHTML = `
           <div class="empty-state-box">
@@ -1813,7 +1767,6 @@
         grid.innerHTML = filtered.map(item => createCardHtml(item)).join('');
       }
 
-      // Render Table Rows
       tableBody.innerHTML = filtered.map(item => `
         <tr>
           <td>
@@ -1825,7 +1778,11 @@
           <td style="font-family:var(--font-mono); font-weight:700;">${item.itemsCount} صنف</td>
           <td style="font-family:var(--font-mono); font-size:0.78rem;">${item.fileSizeText}</td>
           <td style="font-family:var(--font-mono); font-size:0.78rem; color:var(--t3);">${item.dateUploaded}</td>
-          <td><span class="pill-tag" style="color:var(--green-dark); background:var(--green-bg); border-color:rgba(13,175,122,0.2);">جاهز للكاشير</span></td>
+          <td>
+            ${item.isCloudSynced 
+              ? '<span class="cloud-badge-tag">☁️ سحابي</span>' 
+              : '<span class="pill-tag">💾 محلي</span>'}
+          </td>
           <td>
             <div style="display:flex; gap:6px;">
               <button class="btn btn-brand btn-sm" onclick="downloadCleanedCsv('${item.id}')" title="تحميل مباشر">📥 تحميل</button>
@@ -1848,8 +1805,11 @@
                 <div class="store-avatar">${avatarIcon}</div>
                 <div class="store-title-wrap">
                   <h4>${escapeHtml(item.clientName)}</h4>
-                  <span class="store-category-chip">${escapeHtml(item.category)}</span>
-                  ${item.branch ? `<span style="font-size:0.74rem; color:var(--t3); margin-right:6px;">• ${escapeHtml(item.branch)}</span>` : ''}
+                  <div style="display:flex; align-items:center; gap:4px; margin-top:2px;">
+                    <span class="store-category-chip">${escapeHtml(item.category)}</span>
+                    ${item.isCloudSynced ? `<span class="cloud-badge-tag">☁️ سحابي</span>` : ''}
+                    ${item.branch ? `<span style="font-size:0.74rem; color:var(--t3); margin-right:4px;">• ${escapeHtml(item.branch)}</span>` : ''}
+                  </div>
                 </div>
               </div>
               <div class="card-actions-mini">
@@ -1858,7 +1818,6 @@
               </div>
             </div>
 
-            <!-- File info pill -->
             <div class="file-meta-box">
               <div class="file-name-row">
                 <span class="file-name-text" title="${escapeHtml(item.fileName)}">📄 ${escapeHtml(item.fileName)}</span>
@@ -1880,14 +1839,12 @@
               </div>
             </div>
 
-            <!-- Compatibility Badge -->
             <div class="status-pos-badge">
               <div class="status-dot"></div>
               <span>جاهز للاستيراد المباشر في كاشير البصمة الذكية (UTF-8 BOM)</span>
             </div>
           </div>
 
-          <!-- Direct Actions -->
           <div class="card-footer-btns">
             <button class="btn-download-cashier" onclick="downloadCleanedCsv('${item.id}')" title="تحميل ملف CSV نظيف ومجهز للاستيراد">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
@@ -1903,7 +1860,7 @@
     }
 
     function getCategoryIcon(cat) {
-      if (/تموينات|سوبرماركت|بقالة/i.test(cat)) return '🛒';
+      if (/تموينات|سوبرماركت|بقالة|تمور/i.test(cat)) return '🛒';
       if (/مطاعم|كافيه|قهوة/i.test(cat)) return '☕';
       if (/صيدلية|دواء/i.test(cat)) return '💊';
       if (/ملابس|أزياء|عطور/i.test(cat)) return '👔';
@@ -1916,7 +1873,6 @@
       const totalItems = libraryData.reduce((acc, curr) => acc + (curr.itemsCount || 0), 0);
       document.getElementById('metric-clients-count').textContent = clientsCount;
       document.getElementById('metric-items-count').textContent = totalItems.toLocaleString('en-US');
-      document.getElementById('metric-valid-count').textContent = clientsCount;
     }
 
     function setCategoryFilter(cat, btnElem) {
@@ -1949,20 +1905,19 @@
     function toggleCashierMode(enabled) {
       if (enabled) {
         document.body.classList.add('cashier-mode');
-        showToast('تم تفعيل وضع الكاشير السريع (واجهة مبسطة للتحميل المباشر)');
+        showToast('تم تفعيل وضع الكاشير السريع (واجهة تحميل مباشر)');
       } else {
         document.body.classList.remove('cashier-mode');
       }
     }
 
     /* ═══════════════════════════════════════════════════════════
-       DOWNLOAD & EXPORT ACTIONS (WITH UTF-8 BOM)
+       DOWNLOAD & EXPORT (UTF-8 BOM FOR ARABIC INTEGRITY)
        ═══════════════════════════════════════════════════════════ */
     function downloadCleanedCsv(fileId) {
       const item = libraryData.find(x => x.id === fileId);
       if (!item) return;
 
-      // Always prefix with UTF-8 BOM (\uFEFF) so Excel and POS never garble Arabic
       const csvWithBom = '\uFEFF' + item.csvRaw;
       const blob = new Blob([csvWithBom], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
@@ -2007,13 +1962,10 @@
         libraryData = libraryData.filter(x => x.id !== fileId);
         renderLibrary();
         updateMetrics();
-        showToast('تم حذف الملف من المكتبة بنجاح');
+        showToast('تم حذف الملف بنجاح');
       }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       BACKUP & RESTORE COMPLETE LIBRARY
-       ═══════════════════════════════════════════════════════════ */
     function exportLibraryBackup() {
       if (libraryData.length === 0) {
         alert('المكتبة فارغة، لا يوجد بيانات لتصديرها');
@@ -2033,40 +1985,8 @@
       showToast('تم تصدير النسخة الاحتياطية بنجاح!');
     }
 
-    async function importLibraryBackup(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      try {
-        const text = await readFileAsText(file);
-        const imported = JSON.parse(text);
-        if (!Array.isArray(imported)) {
-          throw new Error('صيغة ملف النسخة الاحتياطية غير صحيحة');
-        }
-
-        let importedCount = 0;
-        for (const item of imported) {
-          if (item.id && item.clientName && item.csvRaw) {
-            await saveFileToDb(item);
-            // Replace or add
-            const idx = libraryData.findIndex(x => x.id === item.id);
-            if (idx >= 0) libraryData[idx] = item;
-            else libraryData.unshift(item);
-            importedCount++;
-          }
-        }
-
-        renderLibrary();
-        updateMetrics();
-        showToast(`تمت استعادة ${importedCount} متجر من ملف النسخة الاحتياطية!`);
-      } catch (e) {
-        alert('فشل استيراد النسخة: ' + e.message);
-      }
-      event.target.value = '';
-    }
-
     /* ═══════════════════════════════════════════════════════════
-       IN-BROWSER CSV DATA GRID MODAL
+       PREVIEW MODAL
        ═══════════════════════════════════════════════════════════ */
     function openPreviewModal(fileId) {
       const item = libraryData.find(x => x.id === fileId);
@@ -2080,12 +2000,9 @@
       document.getElementById('modal-summary-tag').textContent = `الفرع: ${item.branch || 'الرئيسي'}`;
 
       const thead = document.getElementById('modal-thead');
-      const tbody = document.getElementById('modal-tbody');
-
       thead.innerHTML = `<tr>${parsed.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr>`;
 
-      activePreviewFilteredItems = parsed.rows;
-      renderModalRows(parsed.headers, activePreviewFilteredItems);
+      renderModalRows(parsed.headers, parsed.rows);
 
       document.getElementById('modal-download-btn').onclick = () => downloadCleanedCsv(item.id);
       document.getElementById('preview-modal').classList.add('open');
@@ -2093,17 +2010,16 @@
 
     function renderModalRows(headers, rows) {
       const tbody = document.getElementById('modal-tbody');
-      const displayRows = rows.slice(0, 100); // Display top 100 for high performance
+      const displayRows = rows.slice(0, 100);
 
       tbody.innerHTML = displayRows.map(row => {
         return `<tr>${headers.map(h => {
-          const val = row[h] || '';
-          // Highlight barcodes and prices nicely
+          let val = row[h] || '';
           if (/باركود|barcode|كود/i.test(h) && val) {
             return `<td><span class="barcode-pill">${escapeHtml(val)}</span></td>`;
           }
           if (/سعر|price|تكلفة|cost/i.test(h) && val) {
-            return `<td><span class="price-tag">${escapeHtml(val)} ر.س</span></td>`;
+            return `<td><span class="price-tag">${escapeHtml(val)}</span></td>`;
           }
           return `<td>${escapeHtml(val)}</td>`;
         }).join('')}</tr>`;
@@ -2141,7 +2057,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       QR & CASHIER TRANSFER MODAL
+       QR MODAL
        ═══════════════════════════════════════════════════════════ */
     function openQrModal(fileId) {
       const item = libraryData.find(x => x.id === fileId);
@@ -2167,18 +2083,15 @@
       });
     }
 
-    // High quality standalone geometric canvas QR code generator
     function drawMockQrCode(label) {
       const canvas = document.getElementById('qr-canvas');
       const ctx = canvas.getContext('2d');
       const size = 180;
       ctx.clearRect(0, 0, size, size);
 
-      // White background
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, size, size);
 
-      // Generate visual pseudo QR pattern from hash
       ctx.fillStyle = '#0F172A';
       const gridSize = 21;
       const cellSize = Math.floor(size / gridSize);
@@ -2187,7 +2100,6 @@
       let hash = 0;
       for (let i = 0; i < label.length; i++) hash = (hash * 31 + label.charCodeAt(i)) & 0xFFFFFFFF;
 
-      // Draw standard 3 QR positioning squares
       function drawQrFinder(x, y) {
         ctx.fillStyle = '#3D52D5';
         ctx.fillRect(pad + x * cellSize, pad + y * cellSize, 7 * cellSize, 7 * cellSize);
@@ -2201,11 +2113,9 @@
       drawQrFinder(14, 0);
       drawQrFinder(0, 14);
 
-      // Draw random-looking data cells
       ctx.fillStyle = '#0F172A';
       for (let r = 0; r < gridSize; r++) {
         for (let c = 0; c < gridSize; c++) {
-          // Skip finder zones
           if ((r < 8 && c < 8) || (r < 8 && c > 12) || (r > 12 && c < 8)) continue;
           const seed = Math.sin(r * 37 + c * 19 + hash) * 10000;
           if ((seed - Math.floor(seed)) > 0.45) {
@@ -2215,9 +2125,6 @@
       }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       UTILITIES & TOAST
-       ═══════════════════════════════════════════════════════════ */
     function showToast(msg) {
       const toast = document.getElementById('toast');
       document.getElementById('toast-text').textContent = msg;
