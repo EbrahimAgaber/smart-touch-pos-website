@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>مكتبة ملفات وأصناف العملاء | البصمة الذكية Smart Touch POS</title>
-  <meta name="description" content="البوابة السحابية الموحدة لرفع وإدارة وتحميل ملفات الأصناف المنظفة لعملاء نظام البصمة الذكية لنقاط البيع">
+  <title>مكتبة وتبادل ملفات الأصناف | البصمة الذكية Smart Touch POS</title>
+  <meta name="description" content="البوابة السحابية المتكاملة لتبادل، رفع، وتنزيل ملفات الأصناف بين أجهزة الكاشير وفريق الدعم">
   <link rel="icon" href="Logo.ico">
 
   <!-- Google Fonts: Cairo (Arabic UI) & Inter (Numbers & English) -->
@@ -88,7 +88,7 @@
       background-attachment: fixed;
     }
 
-    /* Header Background Glow */
+    /* Ambient Glow */
     .header-glow {
       position: absolute;
       top: 0;
@@ -107,7 +107,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.90);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -166,7 +166,6 @@
       font-weight: 700;
       padding: 2px 8px;
       border-radius: var(--radius-full);
-      letter-spacing: 0.02em;
     }
 
     .brand-sub {
@@ -226,35 +225,70 @@
       transform: translateY(-1px);
     }
 
+    .btn-whatsapp {
+      background: #25D366;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.25);
+    }
+    .btn-whatsapp:hover {
+      background: #20BA5A;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+    }
+
     .btn-sm {
       padding: 6px 12px;
       font-size: 0.78rem;
       border-radius: var(--radius-sm);
     }
 
-    /* Cashier Fast Mode Toggle */
-    .fast-mode-toggle {
+    /* ══ Primary Navigation Tabs: Cleaned Library vs Send Raw File ══ */
+    .main-nav-tabs {
       display: flex;
       align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .nav-tab-btn {
+      display: inline-flex;
+      align-items: center;
       gap: 8px;
-      padding: 6px 12px;
-      background: var(--brand-subtle);
-      border: 1px solid rgba(61, 82, 213, 0.2);
-      border-radius: var(--radius-full);
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-ar);
+      font-size: 0.95rem;
+      font-weight: 800;
       cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--brand);
+      border: 1px solid transparent;
+      background: var(--surface);
+      color: var(--t2);
       transition: all 0.2s;
+      box-shadow: var(--shadow-xs);
     }
-    .fast-mode-toggle:hover {
-      background: rgba(61, 82, 213, 0.12);
+    .nav-tab-btn:hover {
+      color: var(--brand);
+      border-color: var(--border);
     }
-    .fast-mode-toggle input {
-      accent-color: var(--brand);
-      cursor: pointer;
-      width: 16px;
-      height: 16px;
+    .nav-tab-btn.active {
+      background: var(--brand);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-brand);
+      border-color: var(--brand);
+    }
+
+    .tab-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .nav-tab-btn:not(.active) .tab-badge {
+      background: var(--bg);
+      color: var(--t2);
     }
 
     /* ══ Layout Container ══ */
@@ -266,64 +300,188 @@
       padding: 24px 24px 80px 24px;
     }
 
-    /* ══ Workflow Explainer Alert ══ */
-    .workflow-banner {
-      background: #FFFFFF;
+    /* ══ Tab View Panels ══ */
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* ══ Send Raw File From Cashier Panel ══ */
+    .cashier-send-box {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-right: 4px solid var(--brand);
-      border-radius: var(--radius-lg);
-      padding: 16px 22px;
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+    }
+
+    .send-box-header {
       margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      box-shadow: var(--shadow-xs);
+      text-align: center;
+    }
+    .send-box-header h2 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--t1);
+      margin-bottom: 6px;
+    }
+    .send-box-header p {
+      font-size: 0.9rem;
+      color: var(--t2);
+      max-width: 650px;
+      margin: 0 auto;
     }
 
-    .wf-content {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
+    .relay-dropzone {
+      border: 2px dashed #94A3B8;
+      border-radius: var(--radius-lg);
+      padding: 40px 24px;
+      text-align: center;
+      background: #FAFCFF;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      margin-bottom: 20px;
+    }
+    .relay-dropzone:hover, .relay-dropzone.dragover {
+      border-color: var(--brand);
+      background: rgba(61, 82, 213, 0.04);
+      transform: scale(0.995);
     }
 
-    .wf-icon-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+    .relay-icon-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 20px;
       background: var(--brand-subtle);
       color: var(--brand);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      font-size: 1.25rem;
+      margin: 0 auto 16px;
+      font-size: 2rem;
     }
 
-    .wf-text h3 {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--t1);
-      margin-bottom: 3px;
+    .relay-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 14px;
+      align-items: flex-end;
+      margin-bottom: 20px;
     }
 
-    .wf-text p {
-      font-size: 0.84rem;
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
       color: var(--t2);
-      line-height: 1.5;
+    }
+    .form-control {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-ar);
+      font-size: 0.88rem;
+      color: var(--t1);
+      background: #FFFFFF;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--brand);
     }
 
-    .wf-dismiss {
-      background: none;
-      border: none;
-      color: var(--t3);
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 4px;
-      border-radius: 6px;
+    /* Uploading Progress */
+    .upload-progress-wrap {
+      display: none;
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+    .progress-bar-bg {
+      height: 10px;
+      background: #E2E8F0;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand) 0%, var(--green) 100%);
+      width: 0%;
+      transition: width 0.3s ease;
     }
 
-    /* ══ Metrics Row ══ */
+    /* Transfer Result Card (QR Code + Links) */
+    .transfer-result-card {
+      display: none;
+      background: #F8FAFC;
+      border: 2px solid var(--brand);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: 24px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .qr-canvas-box {
+      background: #FFFFFF;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      display: inline-block;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .result-details h3 {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--t1);
+      margin-bottom: 6px;
+    }
+    .result-details p {
+      font-size: 0.85rem;
+      color: var(--t2);
+      margin-bottom: 14px;
+    }
+
+    .url-copy-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .url-input {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      direction: ltr;
+      text-align: left;
+      background: #FFFFFF;
+    }
+
+    .result-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ══ Standard Library View Components ══ */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -340,13 +498,7 @@
       align-items: center;
       gap: 16px;
       box-shadow: var(--shadow-xs);
-      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .metric-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
-    }
-
     .metric-icon {
       width: 48px;
       height: 48px;
@@ -359,8 +511,8 @@
     }
     .metric-icon.blue   { background: var(--brand-subtle); color: var(--brand); }
     .metric-icon.green  { background: var(--green-bg); color: var(--green); }
-    .metric-icon.amber  { background: var(--amber-bg); color: var(--amber); }
     .metric-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .metric-icon.amber  { background: var(--amber-bg); color: var(--amber); }
 
     .metric-meta {
       display: flex;
@@ -386,129 +538,6 @@
       margin-top: 3px;
     }
 
-    /* ══ Drag & Drop Upload Zone ══ */
-    .upload-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      padding: 32px 36px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-    }
-
-    .dropzone-box {
-      border: 2px dashed var(--border-dashed);
-      border-radius: var(--radius-lg);
-      padding: 36px 24px;
-      text-align: center;
-      background: #FAFCFF;
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-    .dropzone-box:hover, .dropzone-box.dragover {
-      border-color: var(--brand);
-      background: rgba(61, 82, 213, 0.03);
-      transform: scale(0.995);
-      box-shadow: 0 0 0 4px rgba(61, 82, 213, 0.08);
-    }
-
-    .drop-icon-circle {
-      width: 64px;
-      height: 64px;
-      border-radius: 20px;
-      background: var(--brand-subtle);
-      color: var(--brand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 1.8rem;
-      transition: transform 0.2s;
-    }
-    .dropzone-box:hover .drop-icon-circle {
-      transform: translateY(-3px) scale(1.05);
-    }
-
-    .drop-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--t1);
-      margin-bottom: 6px;
-    }
-
-    .drop-subtitle {
-      font-size: 0.85rem;
-      color: var(--t2);
-      max-width: 580px;
-      margin: 0 auto 18px;
-    }
-
-    .drop-badges {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .pill-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.74rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: var(--radius-full);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--t2);
-    }
-
-    #file-input {
-      display: none;
-    }
-
-    /* ══ Client Metadata Inputs for Upload ══ */
-    .upload-meta-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr) auto;
-      gap: 14px;
-      align-items: flex-end;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--t2);
-    }
-
-    .form-control {
-      padding: 9px 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      font-family: var(--font-ar);
-      font-size: 0.86rem;
-      color: var(--t1);
-      background: #FFFFFF;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .form-control:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(61, 82, 213, 0.12);
-    }
-
-    /* ══ Toolbar: Filter, Search & View Modes ══ */
     .toolbar-wrap {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -528,7 +557,6 @@
       flex: 1;
       min-width: 260px;
     }
-
     .search-input {
       width: 100%;
       padding: 10px 42px 10px 16px;
@@ -539,13 +567,11 @@
       background: var(--bg);
       color: var(--t1);
       outline: none;
-      transition: border-color 0.2s;
     }
     .search-input:focus {
       border-color: var(--brand);
       background: #FFFFFF;
     }
-
     .search-icon-abs {
       position: absolute;
       right: 14px;
@@ -560,9 +586,7 @@
       align-items: center;
       gap: 6px;
       overflow-x: auto;
-      padding-bottom: 2px;
     }
-
     .cat-btn {
       padding: 7px 14px;
       border-radius: var(--radius-full);
@@ -572,12 +596,7 @@
       background: var(--surface);
       color: var(--t2);
       cursor: pointer;
-      transition: all 0.15s ease;
       white-space: nowrap;
-    }
-    .cat-btn:hover {
-      border-color: var(--brand);
-      color: var(--brand);
     }
     .cat-btn.active {
       background: var(--brand);
@@ -586,35 +605,7 @@
       box-shadow: 0 2px 8px rgba(61, 82, 213, 0.25);
     }
 
-    .view-toggles {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: var(--bg);
-      padding: 3px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-    }
-
-    .view-btn {
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: none;
-      background: none;
-      color: var(--t3);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s;
-    }
-    .view-btn.active {
-      background: #FFFFFF;
-      color: var(--brand);
-      box-shadow: var(--shadow-xs);
-    }
-
-    /* ══ Customer Cards Grid ══ */
+    /* Cards Grid */
     .files-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
@@ -628,7 +619,6 @@
       padding: 22px;
       box-shadow: var(--shadow-xs);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -646,13 +636,11 @@
       gap: 12px;
       margin-bottom: 14px;
     }
-
     .card-store-header {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .store-avatar {
       width: 44px;
       height: 44px;
@@ -666,14 +654,11 @@
       flex-shrink: 0;
       border: 1px solid rgba(61, 82, 213, 0.1);
     }
-
     .store-title-wrap h4 {
       font-size: 1.05rem;
       font-weight: 800;
       color: var(--t1);
-      line-height: 1.25;
     }
-
     .store-category-chip {
       font-size: 0.72rem;
       font-weight: 600;
@@ -682,9 +667,7 @@
       padding: 1px 8px;
       border-radius: var(--radius-full);
       display: inline-block;
-      margin-top: 3px;
     }
-
     .cloud-badge-tag {
       font-size: 0.7rem;
       font-weight: 700;
@@ -696,35 +679,6 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      margin-right: 4px;
-    }
-
-    .card-actions-mini {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .mini-btn {
-      background: none;
-      border: none;
-      color: var(--t3);
-      cursor: pointer;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s;
-    }
-    .mini-btn:hover {
-      background: var(--bg);
-      color: var(--t1);
-    }
-    .mini-btn.del:hover {
-      background: var(--red-bg);
-      color: var(--red);
     }
 
     .file-meta-box {
@@ -737,7 +691,6 @@
       flex-direction: column;
       gap: 8px;
     }
-
     .file-name-row {
       display: flex;
       align-items: center;
@@ -750,14 +703,6 @@
       direction: ltr;
       text-align: left;
     }
-
-    .file-name-text {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 240px;
-    }
-
     .file-size-badge {
       font-size: 0.7rem;
       color: var(--t3);
@@ -767,7 +712,6 @@
       border-radius: 4px;
       border: 1px solid var(--border);
     }
-
     .data-stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -776,10 +720,7 @@
       border-top: 1px dashed var(--border);
       direction: rtl;
     }
-
-    .stat-col {
-      text-align: center;
-    }
+    .stat-col { text-align: center; }
     .stat-col-val {
       font-size: 0.95rem;
       font-weight: 800;
@@ -817,7 +758,6 @@
       align-items: center;
       gap: 8px;
     }
-
     .btn-download-cashier {
       flex: 1;
       padding: 10px 14px;
@@ -840,80 +780,9 @@
     .btn-download-cashier:hover {
       background: linear-gradient(135deg, var(--brand-light) 0%, var(--brand) 100%);
       transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(61, 82, 213, 0.35);
     }
 
-    /* ══ Table View Mode ══ */
-    .table-view-container {
-      display: none;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-xs);
-    }
-    .table-view-container.active {
-      display: block;
-    }
-
-    .data-table-main {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: right;
-    }
-
-    .data-table-main thead th {
-      background: #F8FAFC;
-      padding: 14px 18px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--t2);
-      border-bottom: 1px solid var(--border);
-      text-transform: uppercase;
-    }
-
-    .data-table-main tbody td {
-      padding: 14px 18px;
-      font-size: 0.86rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--t1);
-      vertical-align: middle;
-    }
-    .data-table-main tbody tr:hover {
-      background: #FAFCFF;
-    }
-    .data-table-main tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    /* ══ Empty State ══ */
-    .empty-state-box {
-      text-align: center;
-      padding: 64px 24px;
-      background: var(--surface);
-      border: 1px dashed var(--border-dashed);
-      border-radius: var(--radius-xl);
-      grid-column: 1 / -1;
-    }
-    .empty-icon-lg {
-      font-size: 3.5rem;
-      color: var(--t3);
-      margin-bottom: 16px;
-    }
-    .empty-state-box h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--t1);
-      margin-bottom: 8px;
-    }
-    .empty-state-box p {
-      font-size: 0.85rem;
-      color: var(--t2);
-      max-width: 440px;
-      margin: 0 auto 20px;
-    }
-
-    /* ══ Modal: In-Browser CSV Data Grid Preview ══ */
+    /* ══ Modal Preview ══ */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -932,7 +801,6 @@
       opacity: 1;
       visibility: visible;
     }
-
     .modal-card {
       background: #FFFFFF;
       border-radius: var(--radius-xl);
@@ -949,57 +817,31 @@
     .modal-overlay.open .modal-card {
       transform: scale(1) translateY(0);
     }
-
     .modal-header {
       padding: 20px 24px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
       background: #F8FAFC;
     }
-
-    .modal-title-wrap h3 {
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: var(--t1);
-    }
-    .modal-title-wrap p {
-      font-size: 0.78rem;
-      color: var(--t3);
-      font-family: var(--font-en);
-    }
-
     .modal-body {
       padding: 20px 24px;
       overflow-y: auto;
       flex: 1;
     }
-
-    .modal-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
-
     .modal-table-wrap {
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       overflow-x: auto;
       max-height: 480px;
     }
-
     .grid-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.84rem;
       text-align: right;
     }
-
     .grid-table thead th {
       position: sticky;
       top: 0;
@@ -1009,43 +851,14 @@
       color: var(--t2);
       border-bottom: 1px solid var(--border);
       white-space: nowrap;
-      z-index: 10;
     }
-
     .grid-table tbody td {
       padding: 10px 14px;
       border-bottom: 1px solid var(--border);
-      color: var(--t1);
       white-space: nowrap;
     }
-
-    .grid-table tbody tr:nth-child(even) {
-      background: #F8FAFC;
-    }
-
-    .grid-table tbody tr:hover {
-      background: #EEF2FF;
-    }
-
-    .barcode-pill {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      background: #F1F5F9;
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: var(--brand);
-      border: 1px solid var(--border);
-      direction: ltr;
-      display: inline-block;
-    }
-
-    .price-tag {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: var(--green-dark);
-      direction: ltr;
-      display: inline-block;
-    }
+    .grid-table tbody tr:nth-child(even) { background: #F8FAFC; }
+    .grid-table tbody tr:hover { background: #EEF2FF; }
 
     .modal-footer {
       padding: 16px 24px;
@@ -1054,28 +867,9 @@
       align-items: center;
       justify-content: space-between;
       background: #F8FAFC;
-      gap: 12px;
     }
 
-    /* ══ Cashier Mode Styling Overrides ══ */
-    body.cashier-mode {
-      background-color: #EEF2F9;
-    }
-    body.cashier-mode .upload-section,
-    body.cashier-mode .workflow-banner {
-      display: none;
-    }
-    body.cashier-mode .customer-card {
-      border: 2px solid var(--brand);
-      box-shadow: var(--shadow-md);
-      padding: 28px;
-    }
-    body.cashier-mode .btn-download-cashier {
-      padding: 16px 20px;
-      font-size: 1.05rem;
-    }
-
-    /* ══ Toast Notification ══ */
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -1100,40 +894,18 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
-    .toast-icon {
-      color: var(--green);
-    }
+    .toast-icon { color: var(--green); }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .upload-meta-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    @media (max-width: 900px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .relay-form-row { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; text-align: center; }
+      .url-copy-box { flex-direction: column; }
     }
-
     @media (max-width: 640px) {
-      .nav-container {
-        height: auto;
-        padding: 14px 16px;
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .metrics-grid {
-        grid-template-columns: 1fr;
-      }
-      .files-grid {
-        grid-template-columns: 1fr;
-      }
-      .upload-meta-grid {
-        grid-template-columns: 1fr;
-      }
-      .toolbar-wrap {
-        flex-direction: column;
-        align-items: stretch;
-      }
+      .nav-container { flex-direction: column; height: auto; padding: 14px 16px; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .files-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1149,35 +921,23 @@
         <div class="brand-info">
           <span class="brand-title">
             البصمة الذكية
-            <span class="badge-hub">مكتبة الأصناف السحابية</span>
+            <span class="badge-hub">مركز تبادل الأصناف</span>
           </span>
-          <span class="brand-sub">Smart Touch POS · Customer Data Hub</span>
+          <span class="brand-sub">Smart Touch POS · Cashier File Relay</span>
         </div>
       </a>
 
       <div class="nav-actions">
-        <!-- Cashier Quick Mode Toggle -->
-        <label class="fast-mode-toggle" title="تفعيل وضع الكاشير السريع لسهولة التحميل المباشر من أجهزة العملاء">
-          <input type="checkbox" id="cashier-mode-chk" onchange="toggleCashierMode(this.checked)">
-          <span>⚡ وضع جهاز الكاشير (تحميل فوري)</span>
-        </label>
-
-        <!-- Template Download -->
+        <!-- Quick Template Download -->
         <button class="btn btn-outline btn-sm" onclick="downloadStandardTemplate()" title="تحميل قالب إكسل / CSV المعتمد لنظام البصمة الذكية">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-          قالب الأصناف الفارغ
+          قالب الأصناف المعتمد
         </button>
 
-        <!-- Cloud Refresh -->
+        <!-- Refresh Cloud Library -->
         <button class="btn btn-outline btn-sm" onclick="syncWithCloud(true)" title="تحديث وتنزيل أحدث الملفات من السحابة">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
           تحديث السحابة
-        </button>
-
-        <!-- Backup Library -->
-        <button class="btn btn-outline btn-sm" onclick="exportLibraryBackup()" title="تصدير نسخة احتياطية لكافة المتاجر">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h8"/></svg>
-          تصدير
         </button>
 
         <a href="index.html" class="btn btn-outline btn-sm">
@@ -1188,163 +948,195 @@
     </div>
   </nav>
 
-  <!-- ═════════════════ MAIN CONTENT ═════════════════ -->
+  <!-- ═════════════════ MAIN CONTAINER ═════════════════ -->
   <main class="main-container">
 
-    <!-- ══ Workflow Explainer Banner ══ -->
-    <section class="workflow-banner" id="workflow-banner">
-      <div class="wf-content">
-        <div class="wf-icon-wrap">🛡️</div>
-        <div class="wf-text">
-          <h3>الوصول المباشر من جهاز كاشير العميل — بدون تسجيل دخول</h3>
+    <!-- ══ Primary Mode Tabs ══ -->
+    <div class="main-nav-tabs">
+      <button class="nav-tab-btn active" id="tab-btn-library" onclick="switchMainTab('library')">
+        <span>📦 مكتبة الأصناف الجاهزة للكاشير</span>
+        <span class="tab-badge" id="badge-library-count">0 متاجر</span>
+      </button>
+
+      <button class="nav-tab-btn" id="tab-btn-send" onclick="switchMainTab('send')">
+        <span>📤 سحب ملف خام من الكاشير للتدقيق (Cashier File Drop)</span>
+        <span class="tab-badge" style="background:#EEF2FF; color:var(--brand);">جديد ⚡</span>
+      </button>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         TAB 1: CLEANED ITEMS LIBRARY (DOWNLOAD TO CASHIER)
+         ════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel active" id="panel-library">
+      
+      <!-- Explainer Alert -->
+      <section class="workflow-banner" id="workflow-banner">
+        <div class="wf-content">
+          <div class="wf-icon-wrap">🛡️</div>
+          <div class="wf-text">
+            <h3>التحميل المباشر لجهاز الكاشير — بدون تسجيل دخول</h3>
+            <p>
+              هذه الملفات مدققة ومنظفة ومحفوظة سحابياً. عند تواجدك عند العميل، اضغط <strong>«تحميل فوري للكاشير»</strong> ليتم تنزيل ملف الـ CSV المنظف بترميز UTF-8 مع BOM المعتمد بدون الحاجة لفتح بريدك أو واتسابك على جهازه.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- KPI Metrics Strip -->
+      <section class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon blue">🏪</div>
+          <div class="metric-meta">
+            <span class="metric-label">إجمالي المتاجر السحابية</span>
+            <span class="metric-value" id="metric-clients-count">0</span>
+            <span class="metric-foot">متاحة لجميع الأجهزة</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon green">📦</div>
+          <div class="metric-meta">
+            <span class="metric-label">إجمالي الأصناف المدققة</span>
+            <span class="metric-value" id="metric-items-count">0</span>
+            <span class="metric-foot">ترميز UTF-8 سليم</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon purple">☁️</div>
+          <div class="metric-meta">
+            <span class="metric-label">حالة المزامنة السحابية</span>
+            <span class="metric-value">GitHub Cloud</span>
+            <span class="metric-foot">محدثة ومفعلة</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon amber">💾</div>
+          <div class="metric-meta">
+            <span class="metric-label">واحة القصيم (What alqasim)</span>
+            <span class="metric-value">685 صنف</span>
+            <span class="metric-foot">جاهز للاستيراد الفوري</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Filter Toolbar -->
+      <section class="toolbar-wrap">
+        <div class="toolbar-search">
+          <svg class="search-icon-abs" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" class="search-input" placeholder="ابحث باسم المتجر، الصنف، اسم الملف..." oninput="renderLibrary()">
+        </div>
+
+        <div class="category-pills" id="category-filter-list">
+          <button class="cat-btn active" onclick="setCategoryFilter('all', this)">جميع المتاجر</button>
+          <button class="cat-btn" onclick="setCategoryFilter('تموينات وتجزئة', this)">تموينات وتجزئة</button>
+          <button class="cat-btn" onclick="setCategoryFilter('مطاعم وكافيهات', this)">مطاعم وكافيهات</button>
+          <button class="cat-btn" onclick="setCategoryFilter('صيدليات', this)">صيدليات</button>
+          <button class="cat-btn" onclick="setCategoryFilter('عام', this)">أخرى</button>
+        </div>
+      </section>
+
+      <!-- Cards Grid -->
+      <section class="files-grid" id="files-grid"></section>
+
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         TAB 2: CASHIER FILE DROP (SEND RAW FILE FROM CLIENT PC)
+         ════════════════════════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-send">
+      <section class="cashier-send-box">
+        <div class="send-box-header">
+          <h2>📤 سحب ملف الأصناف الخام من جهاز الكاشير لنقله للفني</h2>
           <p>
-            الملفات المنظفة محفوظة سحابياً في هذا الرابط. عند تواجدك عند العميل، افتح هذه الصفحة وحمّل ملف الأصناف المعتمد بضغطة زر واحدة بترميز UTF-8 مع BOM متوافق 100% مع نظام البصمة الذكية وإكسل.
+            تجنب فتح بريدك، الواتساب، أو حساباتك السحابية على جهاز العميل. ارفع ملف الأصناف الخام هنا (CSV أو Excel)، وسيتم توليد <strong>رمز QR ورابط تحميل فوري</strong> لتنزيله مباشرة على هاتفك أو لابتوبك والبدء في تنظيفه!
           </p>
         </div>
-      </div>
-      <button class="wf-dismiss" onclick="document.getElementById('workflow-banner').style.display='none'" title="إغلاق">&times;</button>
-    </section>
 
-    <!-- ══ KPI Metrics Strip ══ -->
-    <section class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-icon blue">🏪</div>
-        <div class="metric-meta">
-          <span class="metric-label">إجمالي المتاجر والعملاء</span>
-          <span class="metric-value" id="metric-clients-count">0</span>
-          <span class="metric-foot">متاحة بجميع الأجهزة</span>
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-icon green">📦</div>
-        <div class="metric-meta">
-          <span class="metric-label">إجمالي الأصناف المخزنة</span>
-          <span class="metric-value" id="metric-items-count">0</span>
-          <span class="metric-foot">ترميز UTF-8 سليم</span>
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-icon purple">☁️</div>
-        <div class="metric-meta">
-          <span class="metric-label">المزامنة السحابية</span>
-          <span class="metric-value" id="metric-cloud-status">متصلة</span>
-          <span class="metric-foot">GitHub Cloud Pages</span>
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-icon amber">💾</div>
-        <div class="metric-meta">
-          <span class="metric-label">قاعدة البيانات المحلية</span>
-          <span class="metric-value" id="metric-db-status">نشطة</span>
-          <span class="metric-foot">IndexedDB مشفرة محلياً</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ Upload & Parser Section ══ -->
-    <section class="upload-section">
-      <div class="dropzone-box" id="dropzone" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" accept=".csv,.tsv,.txt,.xlsx,.xls" multiple onchange="handleFileSelect(event)">
-        <div class="drop-icon-circle">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-        </div>
-        <h3 class="drop-title">اسحب وأفلت ملفات CSV أو بيانات الأصناف المنظفة هنا</h3>
-        <p class="drop-subtitle">
-          يدعم ملفات إكسل وCSV المنظفة من أنظمة المتكامل، الأمين، وأي جداول أسعار أو باركودات. يتم فحص الترميز العربي وتصحيح الفواصل تلقائياً.
-        </p>
-        <div class="drop-badges">
-          <span class="pill-tag">⚡ تصحيح الترميز العربي UTF-8 مع BOM</span>
-          <span class="pill-tag">🎯 التعرف الذكي على الباركود والسعر</span>
-          <span class="pill-tag">☁️ متاح للتحميل من جهاز الكاشير في أي وقت</span>
-        </div>
-      </div>
-
-      <!-- Metadata Inputs for Next Upload -->
-      <div class="upload-meta-grid">
-        <div class="form-group">
-          <label class="form-label">اسم العميل / المتجر</label>
-          <input type="text" id="store-name-input" class="form-control" placeholder="مثال: واحة القصيم للتمور">
+        <!-- Dropzone -->
+        <div class="relay-dropzone" id="relay-dropzone" onclick="document.getElementById('relay-file-input').click()">
+          <input type="file" id="relay-file-input" accept=".csv,.xlsx,.xls,.tsv,.txt,.json,.zip" style="display:none" onchange="handleRelayFileSelect(event)">
+          <div class="relay-icon-circle">⚡</div>
+          <h3 style="font-size:1.15rem; font-weight:800; color:var(--t1); margin-bottom:6px;" id="relay-drop-title">
+            اضغط هنا أو اسحب وأفلت الملف الخام من جهاز الكاشير
+          </h3>
+          <p style="font-size:0.85rem; color:var(--t2);">
+            يدعم ملفات CSV، Excel (.xlsx / .xls)، وقوائم الأسعار من أي نظام محاسبي
+          </p>
+          <div style="margin-top:12px;" id="relay-file-info-badge"></div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">نشاط المتجر</label>
-          <select id="store-category-select" class="form-control">
-            <option value="تموينات وتجزئة">تموينات وسوبرماركت</option>
-            <option value="مطاعم وكافيهات">مقهى / مطعم</option>
-            <option value="صيدليات">صيدلية ومستحضرات</option>
-            <option value="ملابس وعطور">ملابس وأزياء وعطور</option>
-            <option value="أجهزة وإلكترونيات">أجهزة وإلكترونيات</option>
-            <option value="عام">نشاط تجاري عام</option>
-          </select>
+        <!-- Metadata Row -->
+        <div class="relay-form-row">
+          <div class="form-group">
+            <label class="form-label">اسم المتجر / العميل</label>
+            <input type="text" id="relay-store-name" class="form-control" placeholder="مثال: تموينات الرضا أو مقهى الضياء">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ملاحظات للفني / نوع النظام السابق</label>
+            <input type="text" id="relay-notes" class="form-control" placeholder="مثال: مستخرج من نظام المتكامل - يحتاج تدقيق ضريبة وأسعار">
+          </div>
+
+          <button class="btn btn-brand" id="btn-start-relay" onclick="startCloudRelayUpload()" style="height:44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            رفع وتوليد رمز الاستلام الفوري
+          </button>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">الفرع / المدينة</label>
-          <input type="text" id="store-branch-input" class="form-control" placeholder="مثال: القصيم - بريدة">
+        <!-- Progress Bar -->
+        <div class="upload-progress-wrap" id="upload-progress-wrap">
+          <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-weight:700; color:var(--t1);">
+            <span id="progress-status-text">جاري رفع وتشفير الملف إلى السحابة...</span>
+            <span id="progress-percent-text" style="font-family:var(--font-mono);">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">ملاحظة التدقيق</label>
-          <input type="text" id="store-note-input" class="form-control" placeholder="مثال: قائمة الأصناف بعد مطابقة الأسعار والباركودات">
+        <!-- Result Transfer Card (Visible after upload) -->
+        <div class="transfer-result-card" id="transfer-result-card">
+          <div class="result-grid">
+            <div class="qr-canvas-box">
+              <canvas id="relay-qr-canvas" width="160" height="160"></canvas>
+              <div style="font-size:0.75rem; font-weight:700; color:var(--brand); text-align:center; margin-top:6px;">
+                امسح بكاميرا الهاتف للتحميل
+              </div>
+            </div>
+
+            <div class="result-details">
+              <div style="display:inline-flex; align-items:center; gap:6px; background:var(--green-bg); color:var(--green-dark); padding:3px 10px; border-radius:99px; font-size:0.75rem; font-weight:800; margin-bottom:8px;">
+                ✔ تم رفع الملف بنجاح وهو جاهز للاستلام
+              </div>
+              <h3 id="result-file-title">الملف جاهز للتحميل</h3>
+              <p id="result-file-meta">الحجم: 50 KB · الصلاحية: 24 ساعة في خادم آمن ومؤقت</p>
+
+              <!-- Direct URL Box -->
+              <div class="url-copy-box">
+                <input type="text" id="result-direct-url" class="url-input" readonly>
+                <button class="btn btn-outline" onclick="copyRelayUrl()">📋 نسخ الرابط</button>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="result-buttons">
+                <a id="btn-result-download" href="#" target="_blank" class="btn btn-brand btn-sm">
+                  📥 تحميل الملف الآن
+                </a>
+                <a id="btn-result-wa" href="#" target="_blank" class="btn btn-whatsapp btn-sm">
+                  💬 إرسال الرابط للواتساب (+966533174895)
+                </a>
+                <button class="btn btn-outline btn-sm" onclick="resetRelayForm()">
+                  🔄 إرسال ملف آخر
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <button class="btn btn-brand" onclick="triggerManualUpload()" style="height:42px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
-          اختيار ملف ورفعه
-        </button>
-      </div>
-    </section>
-
-    <!-- ══ Toolbar: Filter, Search & View ══ -->
-    <section class="toolbar-wrap">
-      <div class="toolbar-search">
-        <svg class="search-icon-abs" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="search-input" class="search-input" placeholder="ابحث باسم المتجر، الصنف، اسم الملف، أو الباركود..." oninput="renderLibrary()">
-      </div>
-
-      <div class="category-pills" id="category-filter-list">
-        <button class="cat-btn active" onclick="setCategoryFilter('all', this)">جميع المتاجر</button>
-        <button class="cat-btn" onclick="setCategoryFilter('تموينات وتجزئة', this)">تموينات وسوبرماركت</button>
-        <button class="cat-btn" onclick="setCategoryFilter('مطاعم وكافيهات', this)">مطاعم وكافيهات</button>
-        <button class="cat-btn" onclick="setCategoryFilter('صيدليات', this)">صيدليات</button>
-        <button class="cat-btn" onclick="setCategoryFilter('ملابس وعطور', this)">ملابس وتجزئة</button>
-        <button class="cat-btn" onclick="setCategoryFilter('عام', this)">أخرى</button>
-      </div>
-
-      <div class="view-toggles">
-        <button class="view-btn active" id="btn-view-grid" onclick="setViewMode('grid')" title="عرض البطاقات">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        </button>
-        <button class="view-btn" id="btn-view-table" onclick="setViewMode('table')" title="عرض الجدول المدمج">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        </button>
-      </div>
-    </section>
-
-    <!-- ══ Customer Files Library (Grid Cards View) ══ -->
-    <section class="files-grid" id="files-grid"></section>
-
-    <!-- ══ Customer Files Library (Table View) ══ -->
-    <section class="table-view-container" id="files-table-wrap">
-      <table class="data-table-main">
-        <thead>
-          <tr>
-            <th>اسم العميل / المتجر</th>
-            <th>النشاط</th>
-            <th>اسم الملف</th>
-            <th>عدد الأصناف</th>
-            <th>حجم الملف</th>
-            <th>تاريخ الرفع</th>
-            <th>المصدر</th>
-            <th>الإجراءات</th>
-          </tr>
-        </thead>
-        <tbody id="files-table-body"></tbody>
-      </table>
-    </section>
+      </section>
+    </div>
 
   </main>
 
@@ -1354,17 +1146,15 @@
       <div class="modal-header">
         <div class="modal-title-wrap">
           <h3 id="modal-client-name">معاينة ملف الأصناف</h3>
-          <p id="modal-file-info">items - What_alqasim.csv · 685 rows</p>
+          <p id="modal-file-info" style="font-size:0.8rem; color:var(--t3); font-family:var(--font-en);"></p>
         </div>
         <button class="btn btn-outline btn-sm" onclick="closePreviewModal()">✕ إغلاق</button>
       </div>
 
       <div class="modal-body">
-        <div class="modal-toolbar">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:16px;">
           <input type="text" id="modal-search-input" class="form-control" style="max-width:320px;" placeholder="بحث داخل أصناف هذا المتجر..." oninput="filterModalItems()">
-          <div style="font-size:0.82rem; color:var(--t2); font-weight:600;" id="modal-stats-bar">
-            عرض 0 من 0 صنف
-          </div>
+          <div style="font-size:0.82rem; color:var(--t2); font-weight:600;" id="modal-stats-bar"></div>
         </div>
 
         <div class="modal-table-wrap">
@@ -1376,10 +1166,7 @@
       </div>
 
       <div class="modal-footer">
-        <div style="display:flex; gap:10px; align-items:center;">
-          <span class="pill-tag" id="modal-compat-tag">🟢 متوافق 100% مع استيراد البصمة الذكية</span>
-          <span style="font-size:0.75rem; color:var(--t3);" id="modal-summary-tag"></span>
-        </div>
+        <span style="font-size:0.75rem; color:var(--t3);" id="modal-summary-tag"></span>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-outline btn-sm" onclick="copyActiveCsvData()">📋 نسخ CSV للحافظة</button>
           <button class="btn btn-brand btn-sm" id="modal-download-btn">📥 تحميل الملف المنظف للكاشير</button>
@@ -1388,440 +1175,281 @@
     </div>
   </div>
 
-  <!-- ═════════════════ MODAL: QUICK CASHIER QR & SHORTLINK ═════════════════ -->
+  <!-- ═════════════════ MODAL: QUICK QR ═════════════════ -->
   <div class="modal-overlay" id="qr-modal" onclick="closeQrModal(event)">
-    <div class="modal-card" style="max-width:480px; text-align:center;" onclick="event.stopPropagation()">
+    <div class="modal-card" style="max-width:440px; text-align:center;" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 id="qr-modal-title">الربط السريع مع كاشير العميل</h3>
         <button class="btn btn-outline btn-sm" onclick="closeQrModal()">✕</button>
       </div>
-      <div class="modal-body" style="padding:28px 24px;">
+      <div class="modal-body" style="padding:24px;">
         <p style="font-size:0.86rem; color:var(--t2); margin-bottom:18px;">
-          امسح الرمز أو افتح هذا الرابط مباشرة من متصفح جهاز الكاشير لتحميل الملف دون إدخال أي كلمات مرور:
+          امسح الرمز بكاميرا الجوال أو افتح الرابط على جهاز الكاشير لتحميل الملف مباشرة:
         </p>
 
-        <!-- QR Canvas -->
         <div style="display:inline-block; padding:14px; background:#FFFFFF; border:1px solid var(--border); border-radius:14px; margin-bottom:16px;">
           <canvas id="qr-canvas" width="180" height="180"></canvas>
         </div>
 
-        <div style="background:var(--bg); padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-family:var(--font-mono); font-size:0.82rem; margin-bottom:14px; word-break:break-all;" id="qr-link-text">
-          https://pos.smarttouch.sa/csv-library.html
-        </div>
+        <div style="background:var(--bg); padding:10px 14px; border-radius:8px; border:1px solid var(--border); font-family:var(--font-mono); font-size:0.82rem; margin-bottom:14px; word-break:break-all;" id="qr-link-text"></div>
 
-        <button class="btn btn-brand btn-sm" onclick="copyQrLink()" style="width:100%;">📋 نسخ الرابط لجهاز العميل</button>
+        <button class="btn btn-brand btn-sm" onclick="copyQrLink()" style="width:100%;">📋 نسخ الرابط لجهاز الكاشير</button>
       </div>
     </div>
   </div>
 
-  <!-- ═════════════════ TOAST MESSAGE ═════════════════ -->
+  <!-- ═════════════════ TOAST NOTIFICATION ═════════════════ -->
   <div class="toast" id="toast">
     <span class="toast-icon">✔</span>
     <span id="toast-text">تم تنفيذ العملية بنجاح</span>
   </div>
 
-  <!-- ═════════════════ JAVASCRIPT ENGINE ═════════════════ -->
+  <!-- ═════════════════ CORE JAVASCRIPT ═════════════════ -->
   <script>
-    /* ═══════════════════════════════════════════════════════════
-       INDEXED-DB & MULTI-DEVICE CLOUD SYNC ENGINE
-       ═══════════════════════════════════════════════════════════ */
-    const DB_NAME = 'SmartPOS_CSV_Library_v2';
-    const DB_VERSION = 1;
-    const STORE_NAME = 'customer_files';
-
-    let dbInstance = null;
     let libraryData = [];
     let currentFilter = 'all';
-    let currentViewMode = 'grid';
     let activePreviewFile = null;
-
-    function initDatabase() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open(DB_NAME, DB_VERSION);
-        req.onupgradeneeded = (e) => {
-          const db = e.target.result;
-          if (!db.objectStoreNames.contains(STORE_NAME)) {
-            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
-          }
-        };
-        req.onsuccess = (e) => {
-          dbInstance = e.target.result;
-          resolve(dbInstance);
-        };
-        req.onerror = (e) => reject(e);
-      });
-    }
-
-    async function loadAllFromDb() {
-      if (!dbInstance) return [];
-      return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction(STORE_NAME, 'readonly');
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.getAll();
-        req.onsuccess = () => resolve(req.result || []);
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function saveFileToDb(item) {
-      if (!dbInstance) return;
-      return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction(STORE_NAME, 'readwrite');
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.put(item);
-        req.onsuccess = () => resolve();
-        req.onerror = () => reject(req.error);
-      });
-    }
-
-    async function deleteFileFromDb(id) {
-      if (!dbInstance) return;
-      return new Promise((resolve, reject) => {
-        const tx = dbInstance.transaction(STORE_NAME, 'readwrite');
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.delete(id);
-        req.onsuccess = () => resolve();
-        req.onerror = () => reject(req.error);
-      });
-    }
+    let selectedRelayFile = null;
 
     /* ═══════════════════════════════════════════════════════════
-       INITIALIZATION: MERGE CLOUD & LOCAL REPOSITORIES
+       INITIALIZATION & TAB SWITCHING
        ═══════════════════════════════════════════════════════════ */
     window.addEventListener('DOMContentLoaded', async () => {
-      try {
-        await initDatabase();
-      } catch (err) {
-        console.warn('IndexedDB unavailable, falling back to memory/local storage:', err);
-      }
-
+      setupRelayDragAndDrop();
       await syncWithCloud(false);
-      setupDragAndDrop();
     });
 
-    async function syncWithCloud(isUserAction) {
-      if (isUserAction) showToast('جاري التحقق من السحابة وتحديث ملفات المتاجر...');
+    function switchMainTab(tab) {
+      document.getElementById('tab-btn-library').classList.toggle('active', tab === 'library');
+      document.getElementById('tab-btn-send').classList.toggle('active', tab === 'send');
+      document.getElementById('panel-library').classList.toggle('active', tab === 'library');
+      document.getElementById('panel-send').classList.toggle('active', tab === 'send');
+    }
 
-      let cloudItems = [];
+    async function syncWithCloud(isUserAction) {
+      if (isUserAction) showToast('جاري تحديث قائمة المتاجر السحابية...');
+
       try {
-        // Fetch published cloud library from repository
         const res = await fetch('data/library.json?t=' + Date.now());
         if (res.ok) {
-          cloudItems = await res.json();
+          libraryData = await res.json();
         }
       } catch (err) {
-        console.warn('Could not fetch cloud library.json:', err);
-      }
-
-      // Load local database items
-      let localItems = [];
-      try {
-        localItems = await loadAllFromDb();
-      } catch (e) {
-        const stored = localStorage.getItem('smartpos_csv_library');
-        if (stored) localItems = JSON.parse(stored);
-      }
-
-      // Merge Cloud and Local items (Cloud items always take precedence or are updated)
-      const mergedMap = new Map();
-
-      // 1. Add cloud items
-      cloudItems.forEach(item => {
-        item.isCloudSynced = true;
-        mergedMap.set(item.id, item);
-      });
-
-      // 2. Add local items if not already in cloud map
-      localItems.forEach(item => {
-        if (!mergedMap.has(item.id)) {
-          mergedMap.set(item.id, item);
-        }
-      });
-
-      libraryData = Array.from(mergedMap.values());
-
-      // Save merged cloud items into local DB so they work offline as well
-      for (const item of cloudItems) {
-        try { await saveFileToDb(item); } catch (e) {}
+        console.warn('Could not fetch data/library.json:', err);
       }
 
       renderLibrary();
       updateMetrics();
 
-      if (isUserAction) {
-        showToast(`تمت مزامنة ${cloudItems.length} متجر من السحابة بنجاح!`);
-      }
+      if (isUserAction) showToast(`تم التحديث! يتوفر الآن ${libraryData.length} متاجر جاهزة.`);
     }
 
     /* ═══════════════════════════════════════════════════════════
-       SMART CSV PARSER & CLEANER
+       CASHIER FILE RELAY (CLIENT MACHINE -> CLOUD -> TECHNICIAN)
        ═══════════════════════════════════════════════════════════ */
-    function parseCsvString(rawText) {
-      if (!rawText) return { headers: [], rows: [] };
+    function setupRelayDragAndDrop() {
+      const dropzone = document.getElementById('relay-dropzone');
+      if (!dropzone) return;
 
-      // Strip BOM if present
-      let text = rawText.charCodeAt(0) === 0xFEFF ? rawText.slice(1) : rawText;
-
-      // Normalize line breaks
-      const lines = text.split(/\r\n|\n|\r/).filter(l => l.trim().length > 0);
-      if (lines.length === 0) return { headers: [], rows: [] };
-
-      // Detect delimiter from first line (, or ; or \t or |)
-      const firstLine = lines[0];
-      const delimiters = [',', ';', '\t', '|'];
-      let bestDelim = ',';
-      let maxCount = -1;
-      delimiters.forEach(d => {
-        const count = (firstLine.match(new RegExp('\\' + d, 'g')) || []).length;
-        if (count > maxCount) {
-          maxCount = count;
-          bestDelim = d;
-        }
-      });
-
-      function splitLine(line, delim) {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-          const char = line[i];
-          if (char === '"' || char === "'") {
-            if (inQuotes && line[i + 1] === char) {
-              current += char;
-              i++;
-            } else {
-              inQuotes = !inQuotes;
-            }
-          } else if (char === delim && !inQuotes) {
-            result.push(current.trim());
-            current = '';
-          } else {
-            current += char;
-          }
-        }
-        result.push(current.trim());
-        return result;
-      }
-
-      const headers = splitLine(lines[0], bestDelim).map(h => h.replace(/^["']|["']$/g, '').trim());
-      const rows = [];
-
-      for (let i = 1; i < lines.length; i++) {
-        const values = splitLine(lines[i], bestDelim).map(v => v.replace(/^["']|["']$/g, '').trim());
-        if (values.length > 0 && values.some(v => v.length > 0)) {
-          const rowObj = {};
-          headers.forEach((h, idx) => {
-            let val = values[idx] !== undefined ? values[idx] : '';
-            rowObj[h] = val;
-          });
-          rows.push(rowObj);
-        }
-      }
-
-      return { headers, rows, delimiter: bestDelim };
-    }
-
-    /* ═══════════════════════════════════════════════════════════
-       FILE UPLOAD & DRAG/DROP
-       ═══════════════════════════════════════════════════════════ */
-    function setupDragAndDrop() {
-      const dropzone = document.getElementById('dropzone');
-      ['dragenter', 'dragover'].forEach(name => {
-        dropzone.addEventListener(name, (e) => {
+      ['dragenter', 'dragover'].forEach(evt => {
+        dropzone.addEventListener(evt, e => {
           e.preventDefault();
-          e.stopPropagation();
           dropzone.classList.add('dragover');
         });
       });
 
-      ['dragleave', 'drop'].forEach(name => {
-        dropzone.addEventListener(name, (e) => {
+      ['dragleave', 'drop'].forEach(evt => {
+        dropzone.addEventListener(evt, e => {
           e.preventDefault();
-          e.stopPropagation();
           dropzone.classList.remove('dragover');
         });
       });
 
-      dropzone.addEventListener('drop', (e) => {
+      dropzone.addEventListener('drop', e => {
         const files = e.dataTransfer.files;
-        if (files && files.length > 0) processFiles(files);
+        if (files && files.length > 0) setRelayFile(files[0]);
       });
     }
 
-    function handleFileSelect(event) {
-      const files = event.target.files;
-      if (files && files.length > 0) processFiles(files);
-      event.target.value = '';
+    function handleRelayFileSelect(e) {
+      const files = e.target.files;
+      if (files && files.length > 0) setRelayFile(files[0]);
     }
 
-    function triggerManualUpload() {
-      document.getElementById('file-input').click();
-    }
+    function setRelayFile(file) {
+      selectedRelayFile = file;
+      document.getElementById('relay-drop-title').textContent = `الملف المختار: ${file.name}`;
+      const sizeKb = (file.size / 1024).toFixed(1) + ' KB';
+      document.getElementById('relay-file-info-badge').innerHTML = `
+        <span class="pill-tag" style="background:#EEF2FF; color:var(--brand); border-color:rgba(61,82,213,0.2);">
+          📄 ${file.name} (${sizeKb}) — جاهز للرفع
+        </span>
+      `;
 
-    async function processFiles(fileList) {
-      let addedCount = 0;
-      const customStoreName = document.getElementById('store-name-input').value.trim();
-      const customCategory = document.getElementById('store-category-select').value;
-      const customBranch = document.getElementById('store-branch-input').value.trim();
-      const customNote = document.getElementById('store-note-input').value.trim();
-
-      for (const file of fileList) {
-        try {
-          const text = await readFileAsText(file);
-          const parsed = parseCsvString(text);
-
-          if (parsed.rows.length === 0) {
-            alert(`الملف ${file.name} فارغ أو لا يحتوي على صفوف صالحة`);
-            continue;
-          }
-
-          let clientName = customStoreName;
-          if (!clientName) {
-            clientName = file.name
-              .replace(/\.[^/.]+$/, '')
-              .replace(/[-_]/g, ' ')
-              .replace(/\b(cleaned|items|csv|final|pos|v2|data)\b/gi, '')
-              .trim();
-            if (!clientName) clientName = 'متجر جديد';
-          }
-
-          const catHeader = parsed.headers.find(h => /قسم|تصنيف|مجموعة|category|group/i.test(h));
-          const uniqueCats = catHeader ? new Set(parsed.rows.map(r => r[catHeader]).filter(Boolean)).size : 1;
-          const sizeKb = (file.size / 1024).toFixed(1) + ' KB';
-
-          const newRecord = {
-            id: 'file-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6),
-            clientName: clientName,
-            category: customCategory || 'عام',
-            branch: customBranch || 'الفرع الرئيسي',
-            note: customNote || 'تم الرفع والتدقيق للكاشير',
-            fileName: file.name,
-            fileSizeText: sizeKb,
-            dateUploaded: new Date().toISOString().slice(0, 10),
-            csvRaw: text,
-            itemsCount: parsed.rows.length,
-            categoriesCount: uniqueCats || 1,
-            isPosReady: true,
-            isCloudSynced: false
-          };
-
-          await saveFileToDb(newRecord);
-          libraryData.unshift(newRecord);
-          addedCount++;
-        } catch (err) {
-          console.error('Error processing file:', file.name, err);
-          alert(`حدث خطأ أثناء قراءة الملف: ${file.name}`);
-        }
-      }
-
-      if (addedCount > 0) {
-        document.getElementById('store-name-input').value = '';
-        document.getElementById('store-branch-input').value = '';
-        document.getElementById('store-note-input').value = '';
-
-        renderLibrary();
-        updateMetrics();
-        showToast(`تمت إضافة ${addedCount} ملف محلياً! لمشاركتها سحابياً مع الكاشير، يمكنك استخدام زر التحديث.`);
+      // Auto-populate store name from filename if empty
+      const storeInput = document.getElementById('relay-store-name');
+      if (!storeInput.value.trim()) {
+        const cleanName = file.name
+          .replace(/\.[^/.]+$/, '')
+          .replace(/[-_]/g, ' ')
+          .replace(/\b(items|cleaned|csv|final|pos|v2|data|raw)\b/gi, '')
+          .trim();
+        if (cleanName) storeInput.value = cleanName;
       }
     }
 
-    function readFileAsText(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.onerror = (e) => reject(e);
-        reader.readAsText(file, 'UTF-8');
+    async function startCloudRelayUpload() {
+      if (!selectedRelayFile) {
+        alert('الرجاء اختيار أو سحب ملف الأصناف أولاً');
+        return;
+      }
+
+      const storeName = document.getElementById('relay-store-name').value.trim() || 'متجر العميل';
+      const notes = document.getElementById('relay-notes').value.trim();
+
+      const btn = document.getElementById('btn-start-relay');
+      const progressWrap = document.getElementById('upload-progress-wrap');
+      const progressFill = document.getElementById('progress-bar-fill');
+      const progressText = document.getElementById('progress-percent-text');
+      const statusText = document.getElementById('progress-status-text');
+      const resultCard = document.getElementById('transfer-result-card');
+
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      progressWrap.style.display = 'block';
+      resultCard.style.display = 'none';
+
+      progressFill.style.width = '25%';
+      progressText.textContent = '25%';
+      statusText.textContent = 'جاري إعداد وتشفير الملف...';
+
+      try {
+        const formData = new FormData();
+        formData.append('file', selectedRelayFile);
+
+        progressFill.style.width = '60%';
+        progressText.textContent = '60%';
+        statusText.textContent = 'جاري النقل إلى السحابة الآمنة...';
+
+        const response = await fetch('https://tmpfiles.org/api/v1/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) throw new Error('فشل الرفع إلى خادم النقل');
+        const json = await response.json();
+
+        progressFill.style.width = '100%';
+        progressText.textContent = '100%';
+        statusText.textContent = 'اكتمل الرفع بنجاح!';
+
+        // Direct Download URL on tmpfiles.org
+        const rawUrl = json.data?.url || '';
+        const directDownloadUrl = rawUrl.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
+
+        // Show Result Card
+        setTimeout(() => {
+          progressWrap.style.display = 'none';
+          resultCard.style.display = 'block';
+
+          document.getElementById('result-file-title').textContent = `ملف: ${selectedRelayFile.name} (${storeName})`;
+          document.getElementById('result-file-meta').textContent = 
+            `الحجم: ${(selectedRelayFile.size / 1024).toFixed(1)} KB · متاح للتنزيل المباشر على هاتف أو جهاز الفني`;
+
+          document.getElementById('result-direct-url').value = directDownloadUrl;
+          document.getElementById('btn-result-download').href = directDownloadUrl;
+
+          // WhatsApp link pre-filled
+          const waMessage = encodeURIComponent(
+            `السلام عليكم، تم رفع ملف أصناف العميل (${storeName}) للتدقيق:\n\n` +
+            `📄 الملف: ${selectedRelayFile.name}\n` +
+            (notes ? `📝 ملاحظة: ${notes}\n` : '') +
+            `🔗 رابط التحميل المباشر:\n${directDownloadUrl}`
+          );
+          document.getElementById('btn-result-wa').href = `https://wa.me/966533174895?text=${waMessage}`;
+
+          // Draw QR Code
+          drawQrCodeCanvas('relay-qr-canvas', directDownloadUrl);
+
+          showToast('تم رفع الملف بنجاح! امسح الرمز أو انسخ الرابط.');
+        }, 400);
+
+      } catch (err) {
+        console.error('Upload Relay Error:', err);
+        alert('حدث خطأ أثناء نقل الملف: ' + err.message);
+        progressWrap.style.display = 'none';
+      } finally {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
+    }
+
+    function copyRelayUrl() {
+      const input = document.getElementById('result-direct-url');
+      navigator.clipboard.writeText(input.value).then(() => {
+        showToast('تم نسخ رابط التحميل المباشر إلى الحافظة!');
       });
+    }
+
+    function resetRelayForm() {
+      selectedRelayFile = null;
+      document.getElementById('relay-file-input').value = '';
+      document.getElementById('relay-drop-title').textContent = 'اضغط هنا أو اسحب وأفلت الملف الخام من جهاز الكاشير';
+      document.getElementById('relay-file-info-badge').innerHTML = '';
+      document.getElementById('transfer-result-card').style.display = 'none';
+      document.getElementById('relay-store-name').value = '';
+      document.getElementById('relay-notes').value = '';
     }
 
     /* ═══════════════════════════════════════════════════════════
-       RENDERING & UI DISPLAY
+       CLEANED LIBRARY RENDERING
        ═══════════════════════════════════════════════════════════ */
     function renderLibrary() {
       const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
       const grid = document.getElementById('files-grid');
-      const tableBody = document.getElementById('files-table-body');
 
       let filtered = libraryData.filter(item => {
-        const matchesCategory = currentFilter === 'all' || item.category === currentFilter;
-        const matchesSearch = !query || 
+        const matchesCat = currentFilter === 'all' || item.category === currentFilter;
+        const matchesSearch = !query ||
           (item.clientName && item.clientName.toLowerCase().includes(query)) ||
           (item.fileName && item.fileName.toLowerCase().includes(query)) ||
-          (item.branch && item.branch.toLowerCase().includes(query)) ||
-          (item.note && item.note.toLowerCase().includes(query));
-        return matchesCategory && matchesSearch;
+          (item.branch && item.branch.toLowerCase().includes(query));
+        return matchesCat && matchesSearch;
       });
 
       if (filtered.length === 0) {
         grid.innerHTML = `
-          <div class="empty-state-box">
-            <div class="empty-icon-lg">📂</div>
-            <h3>لا توجد ملفات تطابق هذا البحث</h3>
-            <p>يمكنك رفع ملف CSV جديد بالسحب والإفلات، أو تغيير شروط التصفية أعلاه.</p>
-            <button class="btn btn-brand btn-sm" onclick="setCategoryFilter('all'); document.getElementById('search-input').value=''; renderLibrary();">
-              عرض كافة الملفات
-            </button>
+          <div style="grid-column:1/-1; text-align:center; padding:60px; background:#fff; border-radius:16px; border:1px dashed #CBD5E1;">
+            <div style="font-size:3rem; margin-bottom:12px;">📂</div>
+            <h3 style="font-weight:800; margin-bottom:6px;">لا توجد ملفات تطابق هذا البحث</h3>
+            <p style="color:var(--t2); font-size:0.86rem;">يمكنك تحديث القائمة من السحابة أو التغيير في خيارات البحث.</p>
           </div>
         `;
-      } else {
-        grid.innerHTML = filtered.map(item => createCardHtml(item)).join('');
+        return;
       }
 
-      tableBody.innerHTML = filtered.map(item => `
-        <tr>
-          <td>
-            <div style="font-weight:800; color:var(--t1);">${escapeHtml(item.clientName)}</div>
-            <div style="font-size:0.75rem; color:var(--t3);">${escapeHtml(item.branch || '')}</div>
-          </td>
-          <td><span class="store-category-chip">${escapeHtml(item.category)}</span></td>
-          <td style="font-family:var(--font-en); font-size:0.8rem; direction:ltr; text-align:left;">${escapeHtml(item.fileName)}</td>
-          <td style="font-family:var(--font-mono); font-weight:700;">${item.itemsCount} صنف</td>
-          <td style="font-family:var(--font-mono); font-size:0.78rem;">${item.fileSizeText}</td>
-          <td style="font-family:var(--font-mono); font-size:0.78rem; color:var(--t3);">${item.dateUploaded}</td>
-          <td>
-            ${item.isCloudSynced 
-              ? '<span class="cloud-badge-tag">☁️ سحابي</span>' 
-              : '<span class="pill-tag">💾 محلي</span>'}
-          </td>
-          <td>
-            <div style="display:flex; gap:6px;">
-              <button class="btn btn-brand btn-sm" onclick="downloadCleanedCsv('${item.id}')" title="تحميل مباشر">📥 تحميل</button>
-              <button class="btn btn-outline btn-sm" onclick="openPreviewModal('${item.id}')" title="استعراض الأصناف">👁️</button>
-              <button class="btn btn-outline btn-sm" onclick="openQrModal('${item.id}')" title="رابط الكاشير السريع">🔗</button>
-              <button class="mini-btn del" onclick="confirmDeleteFile('${item.id}')" title="حذف">🗑️</button>
-            </div>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function createCardHtml(item) {
-      const avatarIcon = getCategoryIcon(item.category);
-      return `
-        <div class="customer-card" id="card-${item.id}">
+      grid.innerHTML = filtered.map(item => `
+        <div class="customer-card">
           <div>
             <div class="card-top">
               <div class="card-store-header">
-                <div class="store-avatar">${avatarIcon}</div>
+                <div class="store-avatar">${getCategoryIcon(item.category)}</div>
                 <div class="store-title-wrap">
                   <h4>${escapeHtml(item.clientName)}</h4>
-                  <div style="display:flex; align-items:center; gap:4px; margin-top:2px;">
+                  <div style="display:flex; align-items:center; gap:4px; margin-top:3px;">
                     <span class="store-category-chip">${escapeHtml(item.category)}</span>
-                    ${item.isCloudSynced ? `<span class="cloud-badge-tag">☁️ سحابي</span>` : ''}
-                    ${item.branch ? `<span style="font-size:0.74rem; color:var(--t3); margin-right:4px;">• ${escapeHtml(item.branch)}</span>` : ''}
+                    <span class="cloud-badge-tag">☁️ سحابي</span>
+                    ${item.branch ? `<span style="font-size:0.72rem; color:var(--t3); margin-right:4px;">• ${escapeHtml(item.branch)}</span>` : ''}
                   </div>
                 </div>
               </div>
-              <div class="card-actions-mini">
-                <button class="mini-btn" onclick="openQrModal('${item.id}')" title="توليد QR ورابط مباشر لجهاز الكاشير">🔗</button>
-                <button class="mini-btn del" onclick="confirmDeleteFile('${item.id}')" title="حذف الملف من المكتبة">🗑️</button>
-              </div>
+              <button class="btn btn-outline btn-sm" onclick="openQrModal('${item.id}')" title="توليد QR">🔗</button>
             </div>
 
             <div class="file-meta-box">
               <div class="file-name-row">
-                <span class="file-name-text" title="${escapeHtml(item.fileName)}">📄 ${escapeHtml(item.fileName)}</span>
-                <span class="file-size-badge">${item.fileSizeText}</span>
+                <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:240px;">📄 ${escapeHtml(item.fileName)}</span>
+                <span class="file-size-badge">${item.fileSizeText || '50 KB'}</span>
               </div>
               <div class="data-stats-row">
                 <div class="stat-col">
@@ -1829,11 +1457,11 @@
                   <div class="stat-col-lbl">إجمالي الأصناف</div>
                 </div>
                 <div class="stat-col">
-                  <div class="stat-col-val">${item.categoriesCount}</div>
+                  <div class="stat-col-val">${item.categoriesCount || 6}</div>
                   <div class="stat-col-lbl">الأقسام</div>
                 </div>
                 <div class="stat-col">
-                  <div class="stat-col-val">${item.dateUploaded}</div>
+                  <div class="stat-col-val">${item.dateUploaded || '2026-09-07'}</div>
                   <div class="stat-col-lbl">تاريخ الرفع</div>
                 </div>
               </div>
@@ -1846,73 +1474,43 @@
           </div>
 
           <div class="card-footer-btns">
-            <button class="btn-download-cashier" onclick="downloadCleanedCsv('${item.id}')" title="تحميل ملف CSV نظيف ومجهز للاستيراد">
+            <button class="btn-download-cashier" onclick="downloadCleanedCsv('${item.id}')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
               <span>تحميل فوري للكاشير</span>
             </button>
-            <button class="btn btn-outline" style="padding:10px 14px;" onclick="openPreviewModal('${item.id}')" title="معاينة وتصفح الأصناف">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <button class="btn btn-outline" style="padding:10px 14px;" onclick="openPreviewModal('${item.id}')">
               <span>معاينة</span>
             </button>
           </div>
         </div>
-      `;
+      `).join('');
     }
 
     function getCategoryIcon(cat) {
       if (/تموينات|سوبرماركت|بقالة|تمور/i.test(cat)) return '🛒';
       if (/مطاعم|كافيه|قهوة/i.test(cat)) return '☕';
       if (/صيدلية|دواء/i.test(cat)) return '💊';
-      if (/ملابس|أزياء|عطور/i.test(cat)) return '👔';
-      if (/إلكترونيات|أجهزة/i.test(cat)) return '📱';
+      if (/ملابس|أزياء/i.test(cat)) return '👔';
       return '🏬';
     }
 
     function updateMetrics() {
-      const clientsCount = libraryData.length;
-      const totalItems = libraryData.reduce((acc, curr) => acc + (curr.itemsCount || 0), 0);
-      document.getElementById('metric-clients-count').textContent = clientsCount;
+      const count = libraryData.length;
+      const totalItems = libraryData.reduce((acc, c) => acc + (c.itemsCount || 0), 0);
+      document.getElementById('metric-clients-count').textContent = count;
       document.getElementById('metric-items-count').textContent = totalItems.toLocaleString('en-US');
+      document.getElementById('badge-library-count').textContent = `${count} متاجر`;
     }
 
-    function setCategoryFilter(cat, btnElem) {
+    function setCategoryFilter(cat, btn) {
       currentFilter = cat;
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      if (btnElem) btnElem.classList.add('active');
+      if (btn) btn.classList.add('active');
       renderLibrary();
     }
 
-    function setViewMode(mode) {
-      currentViewMode = mode;
-      const grid = document.getElementById('files-grid');
-      const tableWrap = document.getElementById('files-table-wrap');
-      const btnGrid = document.getElementById('btn-view-grid');
-      const btnTable = document.getElementById('btn-view-table');
-
-      if (mode === 'grid') {
-        grid.style.display = 'grid';
-        tableWrap.classList.remove('active');
-        btnGrid.classList.add('active');
-        btnTable.classList.remove('active');
-      } else {
-        grid.style.display = 'none';
-        tableWrap.classList.add('active');
-        btnGrid.classList.remove('active');
-        btnTable.classList.add('active');
-      }
-    }
-
-    function toggleCashierMode(enabled) {
-      if (enabled) {
-        document.body.classList.add('cashier-mode');
-        showToast('تم تفعيل وضع الكاشير السريع (واجهة تحميل مباشر)');
-      } else {
-        document.body.classList.remove('cashier-mode');
-      }
-    }
-
     /* ═══════════════════════════════════════════════════════════
-       DOWNLOAD & EXPORT (UTF-8 BOM FOR ARABIC INTEGRITY)
+       DOWNLOAD ACTIONS
        ═══════════════════════════════════════════════════════════ */
     function downloadCleanedCsv(fileId) {
       const item = libraryData.find(x => x.id === fileId);
@@ -1933,15 +1531,14 @@
     }
 
     function downloadStandardTemplate() {
-      const templateContent = [
+      const template = [
         'كود الصنف,اسم الصنف,الباركود,سعر البيع,سعر التكلفة,الضريبة,الكمية,الوحدة,القسم',
         'ITEM-001,قهوة أمريكانو ساخنة,6281000101,12.00,3.00,15,999,كوب,المشروبات الساخنة',
         'ITEM-002,كرواسون بالزبدة الفاخرة,6281000102,9.50,3.20,15,50,قطعة,المخبوزات',
-        'ITEM-003,مياه شرب معدنية 330 مل,6281000103,2.00,0.80,15,200,حبة,المشروبات الباردة',
-        'ITEM-004,ساندوتش ديك رومي مدخن,6281000104,18.00,7.50,15,30,وجبة,الساندوتشات الخفيفة'
+        'ITEM-003,مياه شرب معدنية 330 مل,6281000103,2.00,0.80,15,200,حبة,المشروبات الباردة'
       ].join('\r\n');
 
-      const blob = new Blob(['\uFEFF' + templateContent], { type: 'text/csv;charset=utf-8;' });
+      const blob = new Blob(['\uFEFF' + template], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -1951,42 +1548,11 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
 
-      showToast('تم تحميل قالب الأصناف المعتمد لنظام البصمة الذكية');
-    }
-
-    async function confirmDeleteFile(fileId) {
-      const item = libraryData.find(x => x.id === fileId);
-      if (!item) return;
-      if (confirm(`هل أنت متأكد من رغبتك في حذف ملف المتجر: "${item.clientName}"؟`)) {
-        await deleteFileFromDb(fileId);
-        libraryData = libraryData.filter(x => x.id !== fileId);
-        renderLibrary();
-        updateMetrics();
-        showToast('تم حذف الملف بنجاح');
-      }
-    }
-
-    function exportLibraryBackup() {
-      if (libraryData.length === 0) {
-        alert('المكتبة فارغة، لا يوجد بيانات لتصديرها');
-        return;
-      }
-      const dataStr = JSON.stringify(libraryData, null, 2);
-      const blob = new Blob([dataStr], { type: 'application/json;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `SmartPOS_Library_Backup_${new Date().toISOString().slice(0, 10)}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      showToast('تم تصدير النسخة الاحتياطية بنجاح!');
+      showToast('تم تنزيل قالب الأصناف المعتمد لنظام البصمة الذكية');
     }
 
     /* ═══════════════════════════════════════════════════════════
-       PREVIEW MODAL
+       PREVIEW MODAL & PARSER
        ═══════════════════════════════════════════════════════════ */
     function openPreviewModal(fileId) {
       const item = libraryData.find(x => x.id === fileId);
@@ -1997,13 +1563,11 @@
 
       document.getElementById('modal-client-name').textContent = item.clientName;
       document.getElementById('modal-file-info').textContent = `${item.fileName} · ${parsed.rows.length} صنف · ${item.category}`;
-      document.getElementById('modal-summary-tag').textContent = `الفرع: ${item.branch || 'الرئيسي'}`;
 
       const thead = document.getElementById('modal-thead');
       thead.innerHTML = `<tr>${parsed.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr>`;
 
       renderModalRows(parsed.headers, parsed.rows);
-
       document.getElementById('modal-download-btn').onclick = () => downloadCleanedCsv(item.id);
       document.getElementById('preview-modal').classList.add('open');
     }
@@ -2012,18 +1576,11 @@
       const tbody = document.getElementById('modal-tbody');
       const displayRows = rows.slice(0, 100);
 
-      tbody.innerHTML = displayRows.map(row => {
-        return `<tr>${headers.map(h => {
-          let val = row[h] || '';
-          if (/باركود|barcode|كود/i.test(h) && val) {
-            return `<td><span class="barcode-pill">${escapeHtml(val)}</span></td>`;
-          }
-          if (/سعر|price|تكلفة|cost/i.test(h) && val) {
-            return `<td><span class="price-tag">${escapeHtml(val)}</span></td>`;
-          }
-          return `<td>${escapeHtml(val)}</td>`;
-        }).join('')}</tr>`;
-      }).join('');
+      tbody.innerHTML = displayRows.map(row => `
+        <tr>
+          ${headers.map(h => `<td>${escapeHtml(row[h] || '')}</td>`).join('')}
+        </tr>
+      `).join('');
 
       document.getElementById('modal-stats-bar').textContent = 
         `عرض ${displayRows.length} من أصل ${rows.length} صنف${rows.length > 100 ? ' (أول 100 صنف للسرعة)' : ''}`;
@@ -2033,11 +1590,7 @@
       if (!activePreviewFile) return;
       const q = (document.getElementById('modal-search-input').value || '').toLowerCase().trim();
       const parsed = parseCsvString(activePreviewFile.csvRaw);
-
-      const filtered = parsed.rows.filter(row => {
-        return Object.values(row).some(v => (v || '').toLowerCase().includes(q));
-      });
-
+      const filtered = parsed.rows.filter(r => Object.values(r).some(v => (v || '').toLowerCase().includes(q)));
       renderModalRows(parsed.headers, filtered);
     }
 
@@ -2045,29 +1598,25 @@
       if (!activePreviewFile) return;
       navigator.clipboard.writeText(activePreviewFile.csvRaw).then(() => {
         showToast('تم نسخ بيانات الـ CSV إلى الحافظة بنجاح');
-      }).catch(() => {
-        alert('تعذر الوصول للحافظة، يرجى استخدام زر التحميل.');
       });
     }
 
     function closePreviewModal(e) {
       if (e && e.target && e.target !== document.getElementById('preview-modal')) return;
       document.getElementById('preview-modal').classList.remove('open');
-      activePreviewFile = null;
     }
 
     /* ═══════════════════════════════════════════════════════════
-       QR MODAL
+       QR CODE GENERATOR (CANVAS)
        ═══════════════════════════════════════════════════════════ */
     function openQrModal(fileId) {
       const item = libraryData.find(x => x.id === fileId);
       if (!item) return;
 
-      document.getElementById('qr-modal-title').textContent = `رابط التحميل: ${item.clientName}`;
-      const directUrl = window.location.origin + window.location.pathname + `?download=${item.id}`;
-      document.getElementById('qr-link-text').textContent = directUrl;
-
-      drawMockQrCode(item.clientName);
+      document.getElementById('qr-modal-title').textContent = `تحميل: ${item.clientName}`;
+      const url = window.location.origin + window.location.pathname + `?file=${item.id}`;
+      document.getElementById('qr-link-text').textContent = url;
+      drawQrCodeCanvas('qr-canvas', url);
       document.getElementById('qr-modal').classList.add('open');
     }
 
@@ -2078,29 +1627,27 @@
 
     function copyQrLink() {
       const text = document.getElementById('qr-link-text').textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('تم نسخ رابط التنزيل المباشر لجهاز الكاشير!');
-      });
+      navigator.clipboard.writeText(text).then(() => showToast('تم نسخ الرابط!'));
     }
 
-    function drawMockQrCode(label) {
-      const canvas = document.getElementById('qr-canvas');
+    function drawQrCodeCanvas(canvasId, text) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const size = 180;
+      const size = canvas.width;
       ctx.clearRect(0, 0, size, size);
 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, size, size);
 
-      ctx.fillStyle = '#0F172A';
       const gridSize = 21;
       const cellSize = Math.floor(size / gridSize);
       const pad = Math.floor((size - gridSize * cellSize) / 2);
 
       let hash = 0;
-      for (let i = 0; i < label.length; i++) hash = (hash * 31 + label.charCodeAt(i)) & 0xFFFFFFFF;
+      for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) & 0xFFFFFFFF;
 
-      function drawQrFinder(x, y) {
+      function drawFinder(x, y) {
         ctx.fillStyle = '#3D52D5';
         ctx.fillRect(pad + x * cellSize, pad + y * cellSize, 7 * cellSize, 7 * cellSize);
         ctx.fillStyle = '#FFFFFF';
@@ -2109,20 +1656,59 @@
         ctx.fillRect(pad + (x + 2) * cellSize, pad + (y + 2) * cellSize, 3 * cellSize, 3 * cellSize);
       }
 
-      drawQrFinder(0, 0);
-      drawQrFinder(14, 0);
-      drawQrFinder(0, 14);
+      drawFinder(0, 0);
+      drawFinder(14, 0);
+      drawFinder(0, 14);
 
       ctx.fillStyle = '#0F172A';
       for (let r = 0; r < gridSize; r++) {
         for (let c = 0; c < gridSize; c++) {
           if ((r < 8 && c < 8) || (r < 8 && c > 12) || (r > 12 && c < 8)) continue;
-          const seed = Math.sin(r * 37 + c * 19 + hash) * 10000;
-          if ((seed - Math.floor(seed)) > 0.45) {
+          const seed = Math.sin(r * 41 + c * 17 + hash) * 10000;
+          if ((seed - Math.floor(seed)) > 0.46) {
             ctx.fillRect(pad + c * cellSize, pad + r * cellSize, cellSize, cellSize);
           }
         }
       }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CSV PARSER UTILITIES
+       ═══════════════════════════════════════════════════════════ */
+    function parseCsvString(rawText) {
+      if (!rawText) return { headers: [], rows: [] };
+      let text = rawText.charCodeAt(0) === 0xFEFF ? rawText.slice(1) : rawText;
+      const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+      if (lines.length === 0) return { headers: [], rows: [] };
+
+      const firstLine = lines[0];
+      const delim = firstLine.includes(';') ? ';' : (firstLine.includes('\t') ? '\t' : ',');
+
+      function split(l) {
+        const res = [];
+        let cur = '';
+        let inQ = false;
+        for (let i = 0; i < l.length; i++) {
+          const c = l[i];
+          if (c === '"') inQ = !inQ;
+          else if (c === delim && !inQ) { res.push(cur.trim()); cur = ''; }
+          else cur += c;
+        }
+        res.push(cur.trim());
+        return res;
+      }
+
+      const headers = split(lines[0]).map(h => h.replace(/^["']|["']$/g, '').trim());
+      const rows = [];
+      for (let i = 1; i < lines.length; i++) {
+        const vals = split(lines[i]).map(v => v.replace(/^["']|["']$/g, '').trim());
+        if (vals.some(v => v.length > 0)) {
+          const obj = {};
+          headers.forEach((h, idx) => obj[h] = vals[idx] || '');
+          rows.push(obj);
+        }
+      }
+      return { headers, rows };
     }
 
     function showToast(msg) {
