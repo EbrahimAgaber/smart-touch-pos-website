@@ -479,3 +479,37 @@ gsap.registerPlugin(ScrollTrigger);
     });
   });
 })();
+
+/* ══════════════════════════════════════════════════
+   14. DYNAMIC LATEST RELEASE AUTO-DETECTOR
+   ══════════════════════════════════════════════════ */
+(function initAutoReleaseDetector() {
+  const GITHUB_REPO = 'EbrahimAgaber/smart-touch-pos';
+  const downloadBtns = [
+    document.getElementById('hero-download-btn'),
+    document.getElementById('nav-download-btn')
+  ].filter(Boolean);
+  const versionTag = document.getElementById('download-version-tag');
+
+  if (downloadBtns.length === 0) return;
+
+  fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases/latest`)
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (!data || !Array.isArray(data.assets)) return;
+      const exeAsset = data.assets.find(a => a.name.toLowerCase().endsWith('.exe'));
+      if (exeAsset) {
+        downloadBtns.forEach(btn => {
+          btn.href = exeAsset.browser_download_url;
+        });
+        if (versionTag) {
+          const mbSize = (exeAsset.size / (1024 * 1024)).toFixed(0);
+          versionTag.textContent = `نسخة ويندوز (${data.tag_name || 'الأخيرة'}) · ${mbSize} MB`;
+        }
+      }
+    })
+    .catch(() => {
+      // Fallback URLs already in HTML remain untouched
+    });
+})();
+

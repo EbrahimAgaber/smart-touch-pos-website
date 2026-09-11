@@ -224,6 +224,93 @@ img{max-width:100%;display:block;}
 }
 .btn-ghost:hover{color:var(--brand);border-color:var(--brand);background:var(--brand-bg);transform:translateY(-1px);box-shadow:var(--sh-sm);}
 
+.btn-download {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand), #293db5);
+  color: #fff !important;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(61, 82, 213, 0.35);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(61, 82, 213, 0.45);
+  background: linear-gradient(135deg, #485ee8, var(--brand));
+}
+.btn-download:hover .btn-glow { opacity: 1; }
+.btn-dl-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  flex-shrink: 0;
+}
+.btn-dl-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: right;
+}
+.btn-dl-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #fff;
+}
+.btn-dl-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-en), sans-serif;
+  margin-top: 1px;
+}
+.btn-secondary-action {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 11px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand);
+  background: var(--brand-bg);
+  border: 1px solid rgba(61, 82, 213, 0.2);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary-action:hover {
+  background: rgba(61, 82, 213, 0.14);
+  transform: translateY(-1px);
+}
+.nav-download-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px !important;
+  border-radius: 8px;
+  background: rgba(13, 175, 122, 0.09) !important;
+  color: var(--green) !important;
+  font-weight: 800 !important;
+  border: 1px solid rgba(13, 175, 122, 0.25);
+  transition: all 0.2s;
+}
+.nav-download-link:hover {
+  background: var(--green) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(13, 175, 122, 0.3);
+}
+
+
 .hero-stats{display:flex;align-items:center;gap:20px;}
 .stat-item{text-align:center;}
 .stat-num{font-size:1.35rem;font-weight:900;font-family:var(--font-en);color:var(--brand);}
